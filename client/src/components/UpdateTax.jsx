@@ -100,6 +100,8 @@ const UpdateTax = () => {
           UPDATE TAXES
         </Button>
 
+        <br></br>
+
         <Button
           variant="contained"
           onClick={() => {
@@ -107,7 +109,7 @@ const UpdateTax = () => {
           }}
           size="large"
         >
-          MAIN MENU
+          HOME PAGE
         </Button>
       </Box>
     </div>
