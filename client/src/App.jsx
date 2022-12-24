@@ -6,7 +6,7 @@ import "./App.css";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Invoice from "./components/Invoice";
-import UpdateMenu from "./components/UpdateMenu";
+import ShowMenu from "./components/ShowMenu";
 import UpdateTax from "./components/UpdateTax";
 import Stats from "./components/Stats";
 
@@ -53,7 +53,7 @@ const App = () => {
           />
           <Route
             path="/menu"
-            element={<UpdateMenu authenticated={authenticated} />}
+            element={<ShowMenu authenticated={authenticated} />}
           />
           <Route
             path="stats"

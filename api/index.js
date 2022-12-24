@@ -33,6 +33,15 @@ app.get("/getRates", (req, res) => {
   });
 });
 
+app.get("/menu", (req, res) => {
+  const sqlSelect = "SELECT * FROM menu";
+  db.query(sqlSelect, (error, result) => {
+    error && console.log(error);
+    res.send(result);
+    // console.log(result);
+  });
+});
+
 app.post("/getNewRates", (req, res) => {
   const { CGST, SGST } = req.body;
   console.log({ CGST, SGST });
