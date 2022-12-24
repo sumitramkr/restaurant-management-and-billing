@@ -18,12 +18,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  // const sqlInsert = "INSERT INTO tax (CGST, SGST) VALUES (5, 5)";
-  // db.query(sqlInsert, (error, result) => {
-  //     console.log("error", error);
-  //     console.log("result", result);
   res.send("Default home route");
-  // });
 });
 
 app.get("/login", (req, res) => {
@@ -31,14 +26,30 @@ app.get("/login", (req, res) => {
 });
 
 app.get("/getRates", (req, res) => {
-    const sqlSelect = "SELECT * FROM tax";
-    db.query(sqlSelect, (error, result) => {
-        console.log(error);
-        res.send(result[0]);
-        console.log(result[0]);
-    })
+  const sqlSelect = "SELECT * FROM tax";
+  db.query(sqlSelect, (error, result) => {
+    error && console.log(error);
+    res.send(result[0]);
+  });
+});
+
+app.post("/getNewRates", (req, res) => {
+  const { CGST, SGST } = req.body;
+  console.log({ CGST, SGST });
+
+  if (typeof CGST === "number" && typeof SGST === "number") {
+    const sqlTruncate = "TRUNCATE TABLE tax";
+    db.query(sqlTruncate, (error, result) => {
+      error && console.log(error);
+    });
+
+    const sqlInsert = "INSERT INTO tax (CGST, SGST) VALUES (?, ?)";
+    db.query(sqlInsert, [CGST, SGST], (error, result) => {
+      error && console.log(error);
+    });
+  }
 });
 
 app.listen(5000, () => {
-  console.log("api call at port 5000");
+  console.log("listening at port 5000");
 });
