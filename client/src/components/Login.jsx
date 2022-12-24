@@ -79,7 +79,12 @@ const Login = ({ authenticated, setAuthenticated }) => {
           }
           label="Password"
         />
-        <Button variant="contained" onClick={submitPassword} color="success" size="large">
+        <Button
+          variant="contained"
+          onClick={submitPassword}
+          color="success"
+          size="large"
+        >
           SUBMIT
         </Button>
       </FormControl>

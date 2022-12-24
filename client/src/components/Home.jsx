@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 
 const Home = ({ authenticated }) => {
   const navigate = useNavigate();
+
   console.log(authenticated);
   return (
     authenticated === 1 && (

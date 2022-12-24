@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const UpdateTax = () => {
+  const navigate = useNavigate();
+
   const [rates, setRates] = useState({
     CGST: 0,
     SGST: 0,
@@ -12,14 +16,42 @@ const UpdateTax = () => {
 
   const getRates = async () => {
     const response = await axios.get("http://localhost:5000/getRates");
-    setRates(rates => ({...rates, CGST: response.data.CGST, SGST: response.data.SGST}));
+    setRates((rates) => ({
+      ...rates,
+      CGST: response.data.CGST,
+      SGST: response.data.SGST,
+    }));
   };
 
   useEffect(() => {
     getRates();
   }, []);
 
-  console.log(rates);///////////////////////////////////////////////
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setRates((rates) => ({
+      ...rates,
+      [name]: parseInt(value),
+    }));
+  };
+
+  const updateRates = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/getNewRates", { ...rates })
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+
+    if (typeof rates.CGST === "number" && typeof rates.SGST === "number") {
+      toast.success("Taxes Updated!");
+    } else {
+      toast.error("Error!");
+    }
+  };
+
+  useEffect(() => {
+    console.log(rates);
+  }, [rates]);
 
   return (
     <div>
@@ -37,7 +69,9 @@ const UpdateTax = () => {
           id="outlined-required"
           label="CGST"
           type="number"
-          placeholder={rates.CGST}
+          name="CGST"
+          onChange={handleChange}
+          placeholder={"" ? "0" : rates.CGST}
           InputLabelProps={{
             shrink: true,
           }}
@@ -47,7 +81,9 @@ const UpdateTax = () => {
           id="outlined-required"
           label="SGST"
           type="number"
-          placeholder={rates.SGST}
+          name="SGST"
+          onChange={handleChange}
+          placeholder={"" ? "0" : rates.SGST}
           InputLabelProps={{
             shrink: true,
           }}
@@ -57,11 +93,21 @@ const UpdateTax = () => {
 
         <Button
           variant="contained"
-          // onClick={submitPassword}
+          onClick={updateRates}
           color="success"
           size="large"
         >
-          SUBMIT
+          UPDATE TAXES
+        </Button>
+
+        <Button
+          variant="contained"
+          onClick={() => {
+            navigate("/home");
+          }}
+          size="large"
+        >
+          MAIN MENU
         </Button>
       </Box>
     </div>
