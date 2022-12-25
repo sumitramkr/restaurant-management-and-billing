@@ -9,6 +9,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import { toast } from "react-toastify";
 
 const ShowMenu = () => {
   const navigate = useNavigate();
@@ -23,6 +24,14 @@ const ShowMenu = () => {
   useEffect(() => {
     loadMenu();
   }, []);
+
+  const deleteItem = (food_id, food_name) => {
+    if (window.confirm("Are you sure? " + food_name + " will be deleted!")) {
+      axios.delete(`http://localhost:5000/deleteItem/${food_id}`);
+      toast.success(food_name + " Deleted Successfully!");
+      setTimeout(() => loadMenu(), 2000);
+    }
+  };
 
   return (
     <div>
@@ -61,16 +70,16 @@ const ShowMenu = () => {
                         navigate("/invoice");
                       }}
                     >
-                      Update
+                      Edit
                     </Button>
 
                     <Button
                       color="error"
                       variant="contained"
                       size="small"
-                      onClick={() => {
-                        navigate("/invoice");
-                      }}
+                      onClick={() =>
+                        deleteItem(foodData.food_id, foodData.food_name)
+                      }
                     >
                       Delete
                     </Button>

@@ -44,7 +44,7 @@ app.get("/menu", (req, res) => {
 
 app.post("/getNewRates", (req, res) => {
   const { CGST, SGST } = req.body;
-  console.log({ CGST, SGST });
+  // console.log({ CGST, SGST });
 
   if (typeof CGST === "number" && typeof SGST === "number") {
     const sqlTruncate = "TRUNCATE TABLE tax";
@@ -57,6 +57,14 @@ app.post("/getNewRates", (req, res) => {
       error && console.log(error);
     });
   }
+});
+
+app.delete("/deleteItem/:food_id", (req, res) => {
+  const {food_id} = req.params;
+  const sqlRemove = "DELETE FROM menu WHERE food_id = ?";
+  db.query(sqlRemove, food_id, (error, result) => {
+    error && console.log(error);
+  });
 });
 
 app.listen(5000, () => {
