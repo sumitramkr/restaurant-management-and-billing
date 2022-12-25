@@ -26,30 +26,38 @@ const AddEditMenuItem = ({ autheticated, foodData }) => {
 
   const addFood = (e) => {
     e.preventDefault();
-    let matched = 0;
-
-    for (let i = 0; i < foodData.length; i++) {
-      if (foodData[i].food_name === food.food_name) {
-        matched = 1;
-        break;
-      }
-    }
-
-    console.log(matched);
-
-    if (matched === 0) {
-      toast.success("Successfully Added!");
-      axios
-        .post("http://localhost:5000/addMenuItem", { ...food })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => console.log(error));
+    if (
+      !food.food_name ||
+      !food.category ||
+      !food.half_price ||
+      !food.full_price
+    ) {
+      toast.error("Enter All Fields!");
     } else {
-      matched = 0;
-      toast.error("Item Already Exists!");
+      let matched = 0;
+
+      for (let i = 0; i < foodData.length; i++) {
+        if (foodData[i].food_name === food.food_name) {
+          matched = 1;
+          break;
+        }
+      }
+
+      if (matched === 0) {
+        toast.success("Successfully Added!");
+        axios
+          .post("http://localhost:5000/addMenuItem", { ...food })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => console.log(error));
+      } else {
+        matched = 0;
+        toast.error("Item Already Exists!");
+      }
+
+      setTimeout(() => navigate("/menu"), 3000);
     }
-    setTimeout(() => navigate("/menu"), 3000);
   };
 
   return (

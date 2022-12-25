@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const UpdateTax = ({authenticated}) => {
+const UpdateTax = ({ authenticated }) => {
   const navigate = useNavigate();
 
   const [rates, setRates] = useState({
@@ -37,15 +37,19 @@ const UpdateTax = ({authenticated}) => {
 
   const updateRates = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:5000/getNewRates", { ...rates })
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-
-    if (typeof rates.CGST === "number" && typeof rates.SGST === "number") {
-      toast.success("Taxes Updated!");
+    if (!rates.CGST || !rates.SGST) {
+      toast.error("Enter All Fields!");
     } else {
-      toast.error("Error!");
+      axios
+        .post("http://localhost:5000/getNewRates", { ...rates })
+        .then((response) => console.log(response))
+        .catch((error) => console.log(error));
+
+      if (typeof rates.CGST === "number" && typeof rates.SGST === "number") {
+        toast.success("Taxes Updated!");
+      } else {
+        toast.error("Error!");
+      }
     }
   };
 
@@ -71,7 +75,7 @@ const UpdateTax = ({authenticated}) => {
           type="number"
           name="CGST"
           onChange={handleChange}
-          value = {rates.CGST || ""}
+          value={rates.CGST || ""}
           InputLabelProps={{
             shrink: true,
           }}
@@ -83,7 +87,7 @@ const UpdateTax = ({authenticated}) => {
           type="number"
           name="SGST"
           onChange={handleChange}
-          value = {rates.SGST || ""}
+          value={rates.SGST || ""}
           InputLabelProps={{
             shrink: true,
           }}
