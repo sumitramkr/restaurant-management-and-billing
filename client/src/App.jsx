@@ -9,7 +9,7 @@ import Invoice from "./components/Invoice";
 import ShowMenu from "./components/ShowMenu";
 import UpdateTax from "./components/UpdateTax";
 import Stats from "./components/Stats";
-import UpdateMenuItem from "./components/UpdateMenuItem";
+import UpdateMenuItem from "./components/EditMenuItem";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(0);
