@@ -67,7 +67,7 @@ const ShowMenu = ({autheticated, foodData, setFoodData}) => {
                       variant="contained"
                       size="small"
                       onClick={() => {
-                        navigate("/invoice");
+                        navigate(`/editMenuItem/${foodData.food_id}`);
                       }}
                     >
                       Edit
@@ -106,7 +106,7 @@ const ShowMenu = ({autheticated, foodData, setFoodData}) => {
         variant="contained"
         size="large"
         onClick={() => {
-          navigate("/addEditMenuItem");
+          navigate("/addMenuItem");
         }}
       >
         ADD ITEM

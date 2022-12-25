@@ -38,14 +38,21 @@ app.get("/menu", (req, res) => {
   db.query(sqlSelect, (error, result) => {
     error && console.log(error);
     res.send(result);
-    // console.log(result);
+  });
+});
+
+app.get("/editMenuItem/:food_id", (req, res) => {
+  const { food_id } = req.params;
+
+  const sqlSelect = "SELECT * FROM menu WHERE food_id = ?";
+  db.query(sqlSelect, food_id, (error, result) => {
+    error && console.log(error);
+    res.send(result);
   });
 });
 
 app.post("/getNewRates", (req, res) => {
   const { CGST, SGST } = req.body;
-  // console.log({ CGST, SGST });
-
   if (typeof CGST === "number" && typeof SGST === "number") {
     const sqlTruncate = "TRUNCATE TABLE tax";
     db.query(sqlTruncate, (error, result) => {
@@ -60,21 +67,41 @@ app.post("/getNewRates", (req, res) => {
 });
 
 app.post("/addMenuItem", (req, res) => {
-  const {food_name, category, half_price, full_price} = req.body;
-  console.log({food_name, category, half_price, full_price});
+  const { food_name, category, half_price, full_price } = req.body;
+  console.log({ food_name, category, half_price, full_price });
 
-  const sqlInsert = "INSERT INTO menu (food_name, category, half_price, full_price) VALUES (?, ?, ?, ?)";
-  db.query(sqlInsert, [food_name, category, parseInt(half_price), parseInt(full_price)], (error, result) => {
-    error && console.log(error);
-  });
+  const sqlInsert =
+    "INSERT INTO menu (food_name, category, half_price, full_price) VALUES (?, ?, ?, ?)";
+  db.query(
+    sqlInsert,
+    [food_name, category, parseInt(half_price), parseInt(full_price)],
+    (error, result) => {
+      error && console.log(error);
+    }
+  );
 });
 
 app.delete("/deleteItem/:food_id", (req, res) => {
-  const {food_id} = req.params;
+  const { food_id } = req.params;
   const sqlRemove = "DELETE FROM menu WHERE food_id = ?";
   db.query(sqlRemove, food_id, (error, result) => {
     error && console.log(error);
   });
+});
+
+app.put("/editMenuItem/:food_id", (req, res) => {
+  const { food_id } = req.params;
+  const { food_name, category, half_price, full_price } = req.body;
+  const sqlUpdate =
+    "UPDATE menu SET food_name = ?, category = ?, half_price = ?, full_price = ? WHERE food_id = ?";
+  db.query(
+    sqlUpdate,
+    [food_name, category, half_price, full_price, food_id],
+    (error, result) => {
+      error && console.log(error);
+      res.send(result);
+    }
+  );
 });
 
 app.listen(5000, () => {

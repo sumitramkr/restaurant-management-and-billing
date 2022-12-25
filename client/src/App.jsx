@@ -58,11 +58,11 @@ const App = () => {
             element={<ShowMenu authenticated={authenticated} foodData={foodData} setFoodData={setFoodData} />}
           />
           <Route
-            path="/addEditMenuItem"
+            path="/addMenuItem"
             element={<AddEditMenuItem authenticated={authenticated} foodData={foodData} />}
           />
           <Route
-            path="/addEditMenuItem/:food_id"
+            path="/editMenuItem/:food_id"
             element={<AddEditMenuItem authenticated={authenticated} foodData={foodData} />}
           />
           <Route
