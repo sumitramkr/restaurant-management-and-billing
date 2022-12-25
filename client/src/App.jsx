@@ -9,7 +9,8 @@ import Invoice from "./components/Invoice";
 import ShowMenu from "./components/ShowMenu";
 import UpdateTax from "./components/UpdateTax";
 import Stats from "./components/Stats";
-import AddEditMenuItem from "./components/AddEditMenuItem";
+import AddMenuItem from "./components/AddMenuItem";
+import EditMenuItem from "./components/EditMenuItem";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(0);
@@ -55,15 +56,25 @@ const App = () => {
           />
           <Route
             path="/menu"
-            element={<ShowMenu authenticated={authenticated} foodData={foodData} setFoodData={setFoodData} />}
+            element={
+              <ShowMenu
+                authenticated={authenticated}
+                foodData={foodData}
+                setFoodData={setFoodData}
+              />
+            }
           />
           <Route
             path="/addMenuItem"
-            element={<AddEditMenuItem authenticated={authenticated} foodData={foodData} />}
+            element={
+              <AddMenuItem authenticated={authenticated} foodData={foodData} />
+            }
           />
           <Route
             path="/editMenuItem/:food_id"
-            element={<AddEditMenuItem authenticated={authenticated} foodData={foodData} />}
+            element={
+              <EditMenuItem authenticated={authenticated} foodData={foodData} />
+            }
           />
           <Route
             path="/stats"
