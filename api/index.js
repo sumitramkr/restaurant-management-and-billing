@@ -59,6 +59,16 @@ app.post("/getNewRates", (req, res) => {
   }
 });
 
+app.post("/addMenuItem", (req, res) => {
+  const {food_name, category, half_price, full_price} = req.body;
+  console.log({food_name, category, half_price, full_price});
+
+  const sqlInsert = "INSERT INTO menu (food_name, category, half_price, full_price) VALUES (?, ?, ?, ?)";
+  db.query(sqlInsert, [food_name, category, parseInt(half_price), parseInt(full_price)], (error, result) => {
+    error && console.log(error);
+  });
+});
+
 app.delete("/deleteItem/:food_id", (req, res) => {
   const {food_id} = req.params;
   const sqlRemove = "DELETE FROM menu WHERE food_id = ?";

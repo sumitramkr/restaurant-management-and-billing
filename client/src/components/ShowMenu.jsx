@@ -11,10 +11,10 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 
-const ShowMenu = () => {
+const ShowMenu = ({autheticated, foodData, setFoodData}) => {
   const navigate = useNavigate();
 
-  const [foodData, setFoodData] = useState([]);
+  // const [foodData, setFoodData] = useState([]);
 
   const loadMenu = async () => {
     const response = await axios.get("http://localhost:5000/menu");
@@ -100,6 +100,16 @@ const ShowMenu = () => {
         }}
       >
         HOME PAGE
+      </Button>
+      <Button
+        color="success"
+        variant="contained"
+        size="large"
+        onClick={() => {
+          navigate("/addEditMenuItem");
+        }}
+      >
+        ADD ITEM
       </Button>
     </div>
   );

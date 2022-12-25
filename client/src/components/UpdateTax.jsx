@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const UpdateTax = () => {
+const UpdateTax = ({authenticated}) => {
   const navigate = useNavigate();
 
   const [rates, setRates] = useState({
@@ -71,7 +71,7 @@ const UpdateTax = () => {
           type="number"
           name="CGST"
           onChange={handleChange}
-          placeholder={"" ? "0" : rates.CGST}
+          value = {rates.CGST || ""}
           InputLabelProps={{
             shrink: true,
           }}
@@ -83,7 +83,7 @@ const UpdateTax = () => {
           type="number"
           name="SGST"
           onChange={handleChange}
-          placeholder={"" ? "0" : rates.SGST}
+          value = {rates.SGST || ""}
           InputLabelProps={{
             shrink: true,
           }}

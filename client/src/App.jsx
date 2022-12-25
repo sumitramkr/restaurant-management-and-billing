@@ -9,10 +9,11 @@ import Invoice from "./components/Invoice";
 import ShowMenu from "./components/ShowMenu";
 import UpdateTax from "./components/UpdateTax";
 import Stats from "./components/Stats";
-import EditMenuItem from "./components/EditMenuItem";
+import AddEditMenuItem from "./components/AddEditMenuItem";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(0);
+  const [foodData, setFoodData] = useState([]);
 
   return (
     <BrowserRouter>
@@ -54,11 +55,15 @@ const App = () => {
           />
           <Route
             path="/menu"
-            element={<ShowMenu authenticated={authenticated} />}
+            element={<ShowMenu authenticated={authenticated} foodData={foodData} setFoodData={setFoodData} />}
           />
           <Route
-            path="/editMenuItem/:food_id"
-            element={<EditMenuItem authenticated={authenticated} />}
+            path="/addEditMenuItem"
+            element={<AddEditMenuItem authenticated={authenticated} foodData={foodData} />}
+          />
+          <Route
+            path="/addEditMenuItem/:food_id"
+            element={<AddEditMenuItem authenticated={authenticated} foodData={foodData} />}
           />
           <Route
             path="/stats"

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Invoice = () => {
+const Invoice = ({authenticated}) => {
   return <div>Invoice</div>;
 };
 
