@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Table from "@mui/material/Table";
@@ -14,8 +14,6 @@ import { toast } from "react-toastify";
 const ShowMenu = ({autheticated, foodData, setFoodData}) => {
   const navigate = useNavigate();
 
-  // const [foodData, setFoodData] = useState([]);
-
   const loadMenu = async () => {
     const response = await axios.get("http://localhost:5000/menu");
     setFoodData(response.data);
@@ -23,7 +21,7 @@ const ShowMenu = ({autheticated, foodData, setFoodData}) => {
 
   useEffect(() => {
     loadMenu();
-  }, []);
+  }, [foodData]);
 
   const deleteItem = (food_id, food_name) => {
     if (window.confirm("Are you sure? " + food_name + " will be deleted!")) {

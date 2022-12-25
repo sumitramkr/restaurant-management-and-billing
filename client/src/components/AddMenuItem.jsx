@@ -34,7 +34,6 @@ const AddMenuItem = ({ autheticated, foodData }) => {
     ) {
       toast.error("Enter All Fields!");
     } else {
-      // if (!food_id) {
       let matched = 0;
 
       for (let i = 0; i < foodData.length; i++) {
@@ -56,8 +55,8 @@ const AddMenuItem = ({ autheticated, foodData }) => {
         matched = 0;
         toast.error("Item Already Exists!");
       }
+      setTimeout(() => navigate("/menu"), 3000);
     }
-    setTimeout(() => navigate("/menu"), 3000);
   };
 
   return (

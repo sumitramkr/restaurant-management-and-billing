@@ -48,8 +48,8 @@ const EditMenuItem = ({ autheticated }) => {
           console.log(response);
         })
         .catch((error) => console.log(error));
+      setTimeout(() => navigate("/menu"), 3000);
     }
-    setTimeout(() => navigate("/menu"), 3000);
   };
 
   return (
