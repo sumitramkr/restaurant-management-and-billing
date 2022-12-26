@@ -128,14 +128,16 @@ const Invoice = ({
 
   let amounts = 0.00;
   let totalAmount = 0.00;
+  let taxAmount = 0.00;
   const GSTIN = 123456789;
 
   const handleFinish = (e) => {
     for (let i = 0; i < billList.length; i++) {
       amounts += billList[i].amount;
     }
-    totalAmount = amounts + ((rates.CGST + rates.SGST) / 100) * amounts;
-    console.log(amounts + " " + totalAmount);
+    totalAmount = (amounts + ((rates.CGST + rates.SGST) / 100) * amounts).toFixed(2);
+    taxAmount = (((rates.CGST + rates.SGST) / 100) * amounts).toFixed(2);
+    console.log(amounts + " " + totalAmount + " " + taxAmount);
   };
 
   return (
