@@ -126,14 +126,16 @@ const Invoice = ({
     e.target.name === "bill_type" && setBillType(e.target.value);
   };
 
-  let amount = 0;
+  let amounts = 0.00;
+  let totalAmount = 0.00;
   const GSTIN = 123456789;
 
   const handleFinish = (e) => {
     for (let i = 0; i < billList.length; i++) {
-      amount += billList[i].amount;
+      amounts += billList[i].amount;
     }
-    console.log(amount);
+    totalAmount = amounts + ((rates.CGST + rates.SGST) / 100) * amounts;
+    console.log(amounts + " " + totalAmount);
   };
 
   return (
