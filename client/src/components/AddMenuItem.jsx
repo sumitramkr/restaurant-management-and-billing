@@ -6,6 +6,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 
+
 const AddMenuItem = ({ autheticated, foodData }) => {
   const navigate = useNavigate();
 

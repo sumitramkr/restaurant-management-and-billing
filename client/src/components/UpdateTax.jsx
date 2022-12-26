@@ -6,13 +6,8 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const UpdateTax = ({ authenticated }) => {
+const UpdateTax = ({ authenticated, rates, setRates }) => {
   const navigate = useNavigate();
-
-  const [rates, setRates] = useState({
-    CGST: 0,
-    SGST: 0,
-  });
 
   const getRates = async () => {
     const response = await axios.get("http://localhost:5000/getRates");

@@ -15,6 +15,20 @@ import EditMenuItem from "./components/EditMenuItem";
 const App = () => {
   const [authenticated, setAuthenticated] = useState(0);
   const [foodData, setFoodData] = useState([]);
+  const [rates, setRates] = useState({
+    CGST: 0,
+    SGST: 0,
+  });
+  const [billList, setBillList] = useState([]);
+
+  const [billData, setBillData] = useState({
+    bill_no: "",
+    bill_type: "",
+    table_no: 0,
+    date: null,
+    CGST: rates.CGST,
+    SGST: rates.SGST,
+  });
 
   return (
     <BrowserRouter>
@@ -48,11 +62,29 @@ const App = () => {
           />
           <Route
             path="/tax"
-            element={<UpdateTax authenticated={authenticated} />}
+            element={
+              <UpdateTax
+                authenticated={authenticated}
+                rates={rates}
+                setRates={setRates}
+              />
+            }
           />
           <Route
             path="/invoice"
-            element={<Invoice authenticated={authenticated} />}
+            element={
+              <Invoice
+                authenticated={authenticated}
+                foodData={foodData}
+                setFoodData={setFoodData}
+                billList={billList}
+                setBillList={setBillList}
+                billData={billData}
+                setBillData={setBillData}
+                rates={rates}
+                setRates={setRates}
+              />
+            }
           />
           <Route
             path="/menu"
