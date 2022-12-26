@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
 
-const ShowMenu = ({autheticated, foodData, setFoodData}) => {
+const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
   const navigate = useNavigate();
 
   const loadMenu = async () => {
