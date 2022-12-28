@@ -1,0 +1,13 @@
+.flex-container {
+    display: flex;
+    height: calc(100vh - 70px);
+}
+
+.flex-child {
+    flex: 1;
+    border: 1px solid black;
+}  
+
+.flex-child:first-child {
+    margin-right: 5px;
+} 

@@ -11,6 +11,7 @@ import UpdateTax from "./components/UpdateTax";
 import Stats from "./components/Stats";
 import AddMenuItem from "./components/AddMenuItem";
 import EditMenuItem from "./components/EditMenuItem";
+import PrintInvoice from "./components/PrintInvoice";
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(0);
@@ -20,15 +21,7 @@ const App = () => {
     SGST: 0,
   });
   const [billList, setBillList] = useState([]);
-
-  const [billData, setBillData] = useState({
-    bill_no: "",
-    bill_type: "",
-    table_no: 0,
-    date: null,
-    CGST: rates.CGST,
-    SGST: rates.SGST,
-  });
+  const [billMetaData, setBillMetaData] = useState([]);
 
   return (
     <BrowserRouter>
@@ -79,8 +72,8 @@ const App = () => {
                 setFoodData={setFoodData}
                 billList={billList}
                 setBillList={setBillList}
-                billData={billData}
-                setBillData={setBillData}
+                billMetaData={billMetaData}
+                setBillMetaData={setBillMetaData}
                 rates={rates}
                 setRates={setRates}
               />
@@ -111,6 +104,15 @@ const App = () => {
           <Route
             path="/stats"
             element={<Stats authenticated={authenticated} />}
+          />
+          <Route
+            path="/printInvoice"
+            element={
+              <PrintInvoice
+                authenticated={authenticated}
+                billMetaData={billMetaData}
+              />
+            }
           />
         </Routes>
       </div>

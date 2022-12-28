@@ -34,7 +34,7 @@ app.get("/getRates", (req, res) => {
 });
 
 app.get("/menu", (req, res) => {
-  const sqlSelect = "SELECT * FROM menu";
+  const sqlSelect = "SELECT * FROM menu ORDER BY food_name";
   db.query(sqlSelect, (error, result) => {
     error && console.log(error);
     res.send(result);
