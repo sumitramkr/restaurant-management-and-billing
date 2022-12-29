@@ -60,7 +60,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
             margin: "auto",
           }}
         >
-          <TableContainer sx={{ maxHeight: "45rem" }}>
+          <TableContainer sx={{ maxHeight: "40rem" }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
