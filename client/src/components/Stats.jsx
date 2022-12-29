@@ -143,7 +143,7 @@ const Stats = ({ authenticated }) => {
       <div>
         <Paper
           sx={{
-            width: "75%",
+            width: "55%",
             overflow: "hidden",
             textAlign: "center",
             margin: "auto",
