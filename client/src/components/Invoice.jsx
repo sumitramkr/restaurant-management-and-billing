@@ -173,43 +173,48 @@ const Invoice = ({
   let finalAmount = 0.0;
 
   const handleFinish = (e) => {
-    if (window.confirm("Create Invoice? (check Table number & Bill Type)")) {
-      for (let i = 0; i < billList.length; i++) {
-        amounts += billList[i].amount;
+    if (!name || !radio || !quantity || !discount || !paymentMode) {
+      toast.error("Enter All Fields!");
+    } else {
+      if (window.confirm("Create Invoice? (check Table number & Bill Type)")) {
+        for (let i = 0; i < billList.length; i++) {
+          amounts += billList[i].amount;
+        }
+
+        discountAmount = ((discount / 100) * amounts).toFixed(2);
+        discountedAmount = (amounts - discountAmount).toFixed(2);
+        taxAmount = (
+          ((rates.CGST + rates.SGST) / 100) *
+          discountedAmount
+        ).toFixed(2);
+        finalAmount = (
+          parseFloat(discountedAmount) + parseFloat(taxAmount)
+        ).toFixed(2);
       }
 
-      discountAmount = ((discount / 100) * amounts).toFixed(2);
-      discountedAmount = (amounts - discountAmount).toFixed(2);
-      taxAmount = (
-        ((rates.CGST + rates.SGST) / 100) *
-        discountedAmount
-      ).toFixed(2);
-      finalAmount = (
-        parseFloat(discountedAmount) + parseFloat(taxAmount)
-      ).toFixed(2);
+      setBillMetaData(() => [
+        {
+          bill_no: timestamp,
+          date: date,
+          payment_mode: paymentMode,
+          CGST: rates.CGST,
+          SGST: rates.SGST,
+          initial_amount: amounts,
+          discount: parseFloat(discount),
+          discount_amount: parseFloat(discountAmount),
+          discounted_amount: parseFloat(discountedAmount),
+          tax_amount: parseFloat(taxAmount),
+          final_amount: parseFloat(finalAmount),
+        },
+        ...billList,
+      ]);
+      toast.success("Generating Bill...");
+      setTimeout(() => {
+        setBillList(() => []);
+        navigate("/printInvoice");
+      }, 3000);
+      // console.log(billMetaData);
     }
-
-    setBillMetaData(() => [
-      {
-        bill_no: timestamp,
-        date: date,
-        payment_mode: paymentMode,
-        CGST: rates.CGST,
-        SGST: rates.SGST,
-        initial_amount: amounts,
-        discount: parseFloat(discount),
-        discount_amount: parseFloat(discountAmount),
-        discounted_amount: parseFloat(discountedAmount),
-        tax_amount: parseFloat(taxAmount),
-        final_amount: parseFloat(finalAmount.toFixed(2)),
-      },
-      ...billList,
-    ]);
-    toast.success("Generating Bill...");
-    setTimeout(() => {
-      navigate("/printInvoice");
-    }, 3000);
-    // console.log(billMetaData);
   };
 
   const handlePaymentMode = (e) => {

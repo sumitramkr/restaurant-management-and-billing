@@ -43,7 +43,7 @@ const App = () => {
             exact
             path="/"
             element={
-              <Login
+              <Home
                 authenticated={authenticated}
                 setAuthenticated={setAuthenticated}
               />

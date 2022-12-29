@@ -34,7 +34,19 @@ const Stats = ({ authenticated }) => {
     setOpen(false);
   };
 
-  const [sales, setSales] = useState([]);
+  const [sales, setSales] = useState([
+    {
+      subtotal: 0,
+      discount_amount: 0,
+      tax_amount: 0,
+      final_amount: 0,
+    },
+    {
+      food_name: "-",
+      total_sales: 0,
+    },
+  ]);
+
   const [date1, setDate1] = useState("");
   const [date2, setDate2] = useState("");
   const [rdate1, setrDate1] = useState("0000-00-00");
@@ -89,7 +101,7 @@ const Stats = ({ authenticated }) => {
     setrDate1(() => formatted_string1);
     setrDate2(() => formatted_string2);
 
-    console.log(formatted_string1 + " " + formatted_string2);
+    // console.log(formatted_string1 + " " + formatted_string2);
   }, [date1, date2]);
 
   useEffect(() => {
@@ -149,7 +161,7 @@ const Stats = ({ authenticated }) => {
             margin: "auto",
           }}
         >
-          <TableContainer sx={{ maxHeight: "45rem" }}>
+          <TableContainer sx={{ maxHeight: "40rem" }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
@@ -175,7 +187,7 @@ const Stats = ({ authenticated }) => {
                     </TableCell>
                     <TableCell align="center">{salesData.food_name}</TableCell>
                     <TableCell align="center">
-                    ₹ {salesData.total_sales}
+                      ₹ {salesData.total_sales}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -194,7 +206,7 @@ const Stats = ({ authenticated }) => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-          <u>{"Data from " + rdate1 + " to " + rdate2}</u>
+            <u>{"Data from " + rdate1 + " to " + rdate2}</u>
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
