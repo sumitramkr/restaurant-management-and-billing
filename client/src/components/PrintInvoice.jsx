@@ -6,14 +6,15 @@ import PrintIcon from "@mui/icons-material/Print";
 import HomeIcon from "@mui/icons-material/Home";
 import "./PrintInvoice.css";
 
-const PrintInvoice = ({ authenticated, billMetaData }) => {
+const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
   const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault();
+    setBillMetaData(() => []);
     axios
-        .post("http://localhost:5000/billData", billMetaData)
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error));
+      .post("http://localhost:5000/billData", billMetaData)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
     window.print();
   };
 
@@ -21,128 +22,63 @@ const PrintInvoice = ({ authenticated, billMetaData }) => {
     navigate("/home");
   };
 
-  // const billMetaData = [
-  //   {
-  //     bill_no: 1672168842965,
-  //     date: "12-12-2012",
-  //     table_no: 2,
-  //     bill_type: "Offline",
-  //     payment_mode: "Debit Card",
-  //     CGST: 9,
-  //     SGST: 9,
-  //     initial_amount: 100.55,
-  //     discount: 10.55,
-  //     discount_amount: 10.55,
-  //     discounted_amount: 90.55,
-  //     tax_amount: 15.55,
-  //     final_amount: 115.55,
-  //   },
-  //   {
-  //     food_name: "Bit Coin",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  //   {
-  //     food_name: "Litti Chokha",
-  //     quantity: 5,
-  //     rate: 999.99,
-  //     amount: 9999.99,
-  //     quantity_type: "full_quantity",
-  //   },
-  // ];
+//   const billMetaData = [
+//     {
+//       bill_no: 1672256214883,
+//       date: "2022-11-29",
+//       payment_mode: "",
+//       CGST: 9,
+//       SGST: 9,
+//       initial_amount: 570,
+//       discount: 10,
+//       discount_amount: 57,
+//       discounted_amount: 513,
+//       tax_amount: 102.6,
+//       final_amount: 672.6,
+//     },
+//     {
+//       food_name: "Aata",
+//       quantity: 4,
+//       rate: 40,
+//       amount: 160,
+//       quantity_type: "full_quantity",
+//     },
+//     {
+//       food_name: "Litti Chokha",
+//       quantity: 4,
+//       rate: 25,
+//       amount: 100,
+//       quantity_type: "full_quantity",
+//     },
+//     {
+//       food_name: "Litti Chokha",
+//       quantity: 5,
+//       rate: 10,
+//       amount: 50,
+//       quantity_type: "half_quantity",
+//     },
+//     {
+//       food_name: "Roti",
+//       quantity: 6,
+//       rate: 10,
+//       amount: 60,
+//       quantity_type: "na",
+//     },
+//     {
+//       food_name: "Idli",
+//       quantity: 5,
+//       rate: 10,
+//       amount: 50,
+//       quantity_type: "half_quantity",
+//     },
+//     {
+//       food_name: "Vada Pav",
+//       quantity: 5,
+//       rate: 30,
+//       amount: 150,
+//       quantity_type: "full_quantity",
+//     },
+//   ];
   const style = {
     fontSize: "7.6px",
     fontFamily: "Helvetica",
@@ -310,18 +246,17 @@ const PrintInvoice = ({ authenticated, billMetaData }) => {
         <br></br>
         <br></br>
         <Button
-        id="btnPrint"
-        className="hidden-print"
-        variant="contained"
-        size="large"
-        color="success"
-        onClick={handleClick}
-        endIcon={<PrintIcon />}
-      >
-        PRINT
-      </Button>
+          id="btnPrint"
+          className="hidden-print"
+          variant="contained"
+          size="large"
+          color="success"
+          onClick={handleClick}
+          endIcon={<PrintIcon />}
+        >
+          PRINT
+        </Button>
       </div>
-      
     </div>
   );
 };

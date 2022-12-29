@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
@@ -6,6 +6,21 @@ import HomeIcon from "@mui/icons-material/Home";
 
 const Stats = ({ authenticated }) => {
   const navigate = useNavigate();
+
+  const [sales, setSales] = useState([]);
+
+  const loadFoodSales = async () => {
+    const response = await axios.get("http://localhost:5000/showStats");
+    setSales(response.data);
+  };
+
+  useEffect(() => {
+    loadFoodSales();
+  }, [sales]);
+
+
+  
+
   return (
     <div>
       <Button
@@ -19,7 +34,7 @@ const Stats = ({ authenticated }) => {
       ></Button>
 
       <div>
-        
+      
       </div>
     </div>
   );

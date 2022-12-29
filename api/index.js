@@ -41,6 +41,22 @@ app.get("/menu", (req, res) => {
   });
 });
 
+app.get("/showStats", (req, res) => {
+  const sqlSelect1 =
+    "SELECT food_name, SUM(amount) AS total_sales FROM stats WHERE date BETWEEN '2012-11-11' AND CURDATE() GROUP BY food_name ORDER BY total_sales DESC";
+  db.query(sqlSelect1, (error1, result1) => {
+    error1 && console.log(error1);
+    // res.send(result1);
+
+    const sqlSelect2 =
+      "SELECT SUM(subtotal) AS subtotal, SUM(discount_amount) AS discount_amount, SUM(tax_amount) AS tax_amount, SUM(final_amount) AS final_amount FROM (SELECT DISTINCT bill_no, subtotal, discount_amount, tax_amount, final_amount FROM stats WHERE date BETWEEN '2012-11-11' AND CURDATE() GROUP BY bill_no) AS le";
+    db.query(sqlSelect2, (error2, result2) => {
+      error2 && console.log(error2);
+      res.send(result2.concat(result1));
+    });
+  });
+});
+
 app.get("/editMenuItem/:food_id", (req, res) => {
   const { food_id } = req.params;
 

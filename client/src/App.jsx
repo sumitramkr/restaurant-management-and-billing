@@ -111,6 +111,7 @@ const App = () => {
               <PrintInvoice
                 authenticated={authenticated}
                 billMetaData={billMetaData}
+                setBillMetaData={setBillMetaData}
               />
             }
           />
