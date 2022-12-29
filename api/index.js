@@ -34,7 +34,7 @@ app.get("/getRates", (req, res) => {
 });
 
 app.get("/menu", (req, res) => {
-  const sqlSelect = "SELECT * FROM menu";
+  const sqlSelect = "SELECT * FROM menu ORDER BY food_name";
   db.query(sqlSelect, (error, result) => {
     error && console.log(error);
     res.send(result);
@@ -79,6 +79,42 @@ app.post("/addMenuItem", (req, res) => {
       error && console.log(error);
     }
   );
+});
+
+app.post("/billData", (req, res) => {
+  const billData = req.body;
+  const {
+    bill_no,
+    date,
+    initial_amount,
+    discount_amount,
+    tax_amount,
+    final_amount,
+  } = billData[0];
+  console.log(billData);
+
+  const sqlInsert =
+    "INSERT INTO stats (date, food_name, amount, bill_no, subtotal, discount_amount, tax_amount, final_amount ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+  for (let i = 1; i < billData.length; i++) {
+    const { food_name, amount } = billData[i];
+    db.query(
+      sqlInsert,
+      [
+        date,
+        food_name,
+        amount,
+        bill_no,
+        initial_amount,
+        discount_amount,
+        tax_amount,
+        final_amount,
+      ],
+      (error, result) => {
+        error && console.log(error);
+      }
+    );
+  }
 });
 
 app.delete("/deleteItem/:food_id", (req, res) => {

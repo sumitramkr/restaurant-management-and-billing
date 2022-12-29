@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
 import { toast } from "react-toastify";
 
 const EditMenuItem = ({ autheticated }) => {
@@ -54,6 +55,18 @@ const EditMenuItem = ({ autheticated }) => {
 
   return (
     <div>
+    <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              navigate("/home");
+            }}
+            endIcon={<HomeIcon />}
+            align="left"
+            className="left-home-btn"
+          ></Button>
+          <br></br>
+          <br></br>
       <Box
         component="form"
         sx={{
@@ -111,17 +124,6 @@ const EditMenuItem = ({ autheticated }) => {
           onClick={addFood}
         >
           UPDATE ITEM
-        </Button>
-        <br></br>
-        <Button
-          color="primary"
-          variant="contained"
-          size="large"
-          onClick={() => {
-            navigate("/home");
-          }}
-        >
-          HOME PAGE
         </Button>
       </Box>
     </div>
