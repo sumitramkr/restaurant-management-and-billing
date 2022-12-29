@@ -9,7 +9,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
 import { toast } from "react-toastify";
+import "./ShowMenu.css";
 
 const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
   const navigate = useNavigate();
@@ -31,84 +33,99 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
     }
   };
 
-  return (
-    <div>
-      <Paper sx={{ width: "75%", overflow: "hidden" }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Food Id</TableCell>
-                <TableCell align="center">Food Name</TableCell>
-                <TableCell align="center">Category</TableCell>
-                <TableCell align="center">Half Price</TableCell>
-                <TableCell align="center">Full Price</TableCell>
-                <TableCell align="center">Action</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {foodData.map((foodData) => (
-                <TableRow
-                  key={foodData.food_id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    {foodData.food_id}
-                  </TableCell>
-                  <TableCell align="center">{foodData.food_name}</TableCell>
-                  <TableCell align="center">{foodData.category}</TableCell>
-                  <TableCell align="center">{foodData.half_price}</TableCell>
-                  <TableCell align="center">{foodData.full_price}</TableCell>
-                  <TableCell align="center">
-                    <Button
-                      color="success"
-                      variant="contained"
-                      size="small"
-                      onClick={() => {
-                        navigate(`/editMenuItem/${foodData.food_id}`);
-                      }}
-                    >
-                      Edit
-                    </Button>
+  const handleHome = () => {
+    navigate("/home");
+  };
 
-                    <Button
-                      color="error"
-                      variant="contained"
-                      size="small"
-                      onClick={() =>
-                        deleteItem(foodData.food_id, foodData.food_name)
-                      }
-                    >
-                      Delete
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
+  return (
+    <div className="parent">
+      <div className="btn-home">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleHome}
+          endIcon={<HomeIcon />}
+          align="left"
+          className="left-home-btn"
+        ></Button>
+      </div>
       <br></br>
-      <Button
-        color="primary"
-        variant="contained"
-        size="large"
-        onClick={() => {
-          navigate("/home");
-        }}
-      >
-        HOME PAGE
-      </Button>
-      <Button
-        color="success"
-        variant="contained"
-        size="large"
-        onClick={() => {
-          navigate("/addMenuItem");
-        }}
-      >
-        ADD ITEM
-      </Button>
+      <br></br>
+      <div className="paper">
+        <Paper
+          sx={{
+            width: "75%",
+            overflow: "hidden",
+            textAlign: "center",
+            margin: "auto",
+          }}
+        >
+          <TableContainer sx={{ maxHeight: "45rem" }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Food Id</TableCell>
+                  <TableCell align="center">Food Name</TableCell>
+                  <TableCell align="center">Category</TableCell>
+                  <TableCell align="center">Half Price</TableCell>
+                  <TableCell align="center">Full Price</TableCell>
+                  <TableCell align="center">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {foodData.map((foodData) => (
+                  <TableRow
+                    key={foodData.food_id}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {foodData.food_id}
+                    </TableCell>
+                    <TableCell align="center">{foodData.food_name}</TableCell>
+                    <TableCell align="center">{foodData.category}</TableCell>
+                    <TableCell align="center">{foodData.half_price}</TableCell>
+                    <TableCell align="center">{foodData.full_price}</TableCell>
+                    <TableCell align="center">
+                      <Button
+                        color="success"
+                        variant="contained"
+                        size="small"
+                        onClick={() => {
+                          navigate(`/editMenuItem/${foodData.food_id}`);
+                        }}
+                      >
+                        Edit
+                      </Button>
+
+                      <Button
+                        color="error"
+                        variant="contained"
+                        size="small"
+                        onClick={() =>
+                          deleteItem(foodData.food_id, foodData.food_name)
+                        }
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+        <br></br>
+        <Button
+          color="success"
+          variant="contained"
+          size="large"
+          onClick={() => {
+            navigate("/addMenuItem");
+          }}
+        >
+          ADD ITEM
+        </Button>
+        </div>
     </div>
   );
 };

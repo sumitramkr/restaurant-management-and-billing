@@ -11,3 +11,7 @@
 .flex-child:first-child {
     margin-right: 5px;
 } 
+
+.left-home-btn {
+    float: left;
+}

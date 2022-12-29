@@ -5,6 +5,7 @@ import axios from "axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import HomeIcon from "@mui/icons-material/Home";
 
 const UpdateTax = ({ authenticated, rates, setRates }) => {
   const navigate = useNavigate();
@@ -54,6 +55,18 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
 
   return (
     <div>
+    <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              navigate("/home");
+            }}
+            endIcon={<HomeIcon />}
+            align="left"
+            className="left-home-btn"
+          ></Button>
+          <br></br>
+          <br></br>
       <h1>Taxes</h1>
       <br></br>
       <Box
@@ -97,18 +110,6 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
           size="large"
         >
           UPDATE TAXES
-        </Button>
-
-        <br></br>
-
-        <Button
-          variant="contained"
-          onClick={() => {
-            navigate("/home");
-          }}
-          size="large"
-        >
-          HOME PAGE
         </Button>
       </Box>
     </div>

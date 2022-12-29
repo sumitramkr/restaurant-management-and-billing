@@ -20,6 +20,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
+import HomeIcon from '@mui/icons-material/Home';
 import "./Invoice.css";
 
 const Invoice = ({
@@ -37,8 +38,8 @@ const Invoice = ({
   const [quantity, setQuantity] = useState(0);
   const [name, setName] = useState("");
   const [radio, setRadio] = useState("");
-  const [tableNo, setTableNo] = useState(0);
-  const [billType, setBillType] = useState("");
+  // const [tableNo, setTableNo] = useState(0);
+  // const [billType, setBillType] = useState("");
   const [discount, setDiscount] = useState(0);
   const [paymentMode, setPaymentMode] = useState("");
   const [tempValue, setTempValue] = useState({
@@ -79,15 +80,7 @@ const Invoice = ({
     let rate = 0;
     let amount = 0;
     let updated = 0;
-    if (
-      !tableNo ||
-      !billType ||
-      !name ||
-      !radio ||
-      !quantity ||
-      !discount ||
-      !paymentMode
-    ) {
+    if (!name || !radio || !quantity || !discount || !paymentMode) {
       toast.error("Enter All Fields!");
     } else {
       for (let i = 0; i < billList.length; i++) {
@@ -95,7 +88,7 @@ const Invoice = ({
           billList[i].food_name === name &&
           billList[i].quantity_type === radio
         ) {
-          toast.success("Updated old quantity!")
+          toast.success("Updated old quantity!");
           updated = 1;
 
           const newArr = [...billList];
@@ -145,7 +138,7 @@ const Invoice = ({
   }, [tempValue]);
 
   useEffect(() => {
-    console.log(billList);
+    // console.log(billList);
     setName("");
     setQuantity(0);
     setRadio("");
@@ -168,10 +161,10 @@ const Invoice = ({
   const d = new Date();
   const date = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 
-  const fixedChange = (e) => {
-    e.target.name === "table_no" && setTableNo(() => e.target.value);
-    e.target.name === "bill_type" && setBillType(() => e.target.value);
-  };
+  // const fixedChange = (e) => {
+  //   e.target.name === "table_no" && setTableNo(() => e.target.value);
+  //   e.target.name === "bill_type" && setBillType(() => e.target.value);
+  // };
 
   let amounts = 0.0;
   let discountAmount = 0.0;
@@ -200,8 +193,6 @@ const Invoice = ({
       {
         bill_no: timestamp,
         date: date,
-        table_no: parseInt(tableNo),
-        bill_type: billType,
         payment_mode: paymentMode,
         CGST: rates.CGST,
         SGST: rates.SGST,
@@ -218,7 +209,7 @@ const Invoice = ({
     setTimeout(() => {
       navigate("/printInvoice");
     }, 3000);
-    console.log(billMetaData);
+    // console.log(billMetaData);
   };
 
   const handlePaymentMode = (e) => {
@@ -241,9 +232,24 @@ const Invoice = ({
     }
   };
 
-  return (
+  const handleHome = () => {
+    navigate("/home");
+  };
+
+  return (<div>
+    
     <div className="flex-container">
       <div className="flex-child">
+      <Button
+            variant="contained"
+            color="primary"
+            onClick={handleHome}
+            endIcon={<HomeIcon />}
+            align="left"
+            className="left-home-btn"
+          ></Button>
+          <br></br>
+          <br></br>
         <Box
           component="form"
           sx={{
@@ -260,7 +266,6 @@ const Invoice = ({
             value={timestamp}
             helperText="Bill Number"
             type="number"
-            onChange={fixedChange}
           />
           <TextField
             id="outlined-date"
@@ -270,32 +275,9 @@ const Invoice = ({
             value={date}
             helperText="Date"
             type="date"
-            onChange={fixedChange}
           />
           <br></br>
-          <TextField
-            id="outlined-select-tableno"
-            name="table_no"
-            label="Table Number"
-            value={tableNo || ""}
-            helperText="Select Table Number"
-            type="number"
-            onChange={fixedChange}
-          />
 
-          <TextField
-            id="outlined-select-billtype"
-            select
-            name="bill_type"
-            label="Bill Type"
-            value={billType || ""}
-            helperText="Online/Offline"
-            onChange={fixedChange}
-          >
-            <MenuItem value="Offline">Off-line</MenuItem>
-            <MenuItem value="Online">On-line</MenuItem>
-          </TextField>
-          <br></br>
           <TextField
             id="outlined-discount"
             name="discount"
@@ -449,6 +431,7 @@ const Invoice = ({
           </TableContainer>
         </Paper>
       </div>
+    </div>
     </div>
   );
 };
