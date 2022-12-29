@@ -20,7 +20,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 import "./Invoice.css";
 
 const Invoice = ({
@@ -159,7 +159,7 @@ const Invoice = ({
 
   const [timestamp, setTimestamp] = useState(new Date().getTime());
   const d = new Date();
-  const date = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+  const date = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
 
   // const fixedChange = (e) => {
   //   e.target.name === "table_no" && setTableNo(() => e.target.value);
@@ -201,7 +201,7 @@ const Invoice = ({
         discount_amount: parseFloat(discountAmount),
         discounted_amount: parseFloat(discountedAmount),
         tax_amount: parseFloat(taxAmount),
-        final_amount: parseFloat(finalAmount),
+        final_amount: parseFloat(finalAmount.toFixed(2)),
       },
       ...billList,
     ]);
@@ -236,11 +236,11 @@ const Invoice = ({
     navigate("/home");
   };
 
-  return (<div>
-    
-    <div className="flex-container">
-      <div className="flex-child">
-      <Button
+  return (
+    <div>
+      <div className="flex-container">
+        <div className="flex-child">
+          <Button
             variant="contained"
             color="primary"
             onClick={handleHome}
@@ -250,188 +250,188 @@ const Invoice = ({
           ></Button>
           <br></br>
           <br></br>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField
-            id="outlined-billno"
-            disabled
-            name="bill_no"
-            label="Bill Number"
-            value={timestamp}
-            helperText="Bill Number"
-            type="number"
-          />
-          <TextField
-            id="outlined-date"
-            disabled
-            name="date"
-            label="Date"
-            value={date}
-            helperText="Date"
-            type="date"
-          />
-          <br></br>
-
-          <TextField
-            id="outlined-discount"
-            name="discount"
-            label="Discount"
-            value={discount || ""}
-            helperText="Select the discount"
-            type="number"
-            onChange={quantityChange}
-          />
-          <TextField
-            id="outlined-select-payment-mode"
-            select
-            name="payment_mode"
-            label="Payment Mode"
-            value={paymentMode || ""}
-            helperText="Select the payment mode"
-            onChange={handlePaymentMode}
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
           >
-            <MenuItem value="Cash">Cash</MenuItem>
-            <MenuItem value="Debit Card">Debit Card</MenuItem>
-            <MenuItem value="Credit Card">Credit Card</MenuItem>
-            <MenuItem value="UPI">UPI</MenuItem>
-            <MenuItem value="Other">Other</MenuItem>
-          </TextField>
-          <br></br>
-          <TextField
-            id="outlined-select-food"
-            select
-            name="food_name"
-            label="Item"
-            value={name}
-            helperText="Select the food item"
-            onChange={nameChange}
-          >
-            {foodData.map((foodData) => (
-              <MenuItem key={foodData.food_name} value={foodData.food_name}>
-                {foodData.food_name}
-              </MenuItem>
-            ))}
-          </TextField>
-          <br></br>
+            <TextField
+              id="outlined-billno"
+              disabled
+              name="bill_no"
+              label="Bill Number"
+              value={timestamp}
+              helperText="Bill Number"
+              type="number"
+            />
+            <TextField
+              id="outlined-date"
+              disabled
+              name="date"
+              label="Date"
+              value={date}
+              helperText="Date"
+              type="date"
+            />
+            <br></br>
 
-          <FormControl>
-            <RadioGroup
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-              sx={{
-                "& .MuiSvgIcon-root": {
-                  fontSize: 28,
-                },
-              }}
-              value={radio}
-              onChange={radioChange}
+            <TextField
+              id="outlined-discount"
+              name="discount"
+              label="Discount"
+              value={discount || ""}
+              helperText="Select the discount"
+              type="number"
+              onChange={quantityChange}
+            />
+            <TextField
+              id="outlined-select-payment-mode"
+              select
+              name="payment_mode"
+              label="Payment Mode"
+              value={paymentMode || ""}
+              helperText="Select the payment mode"
+              onChange={handlePaymentMode}
             >
-              <FormControlLabel
-                value="full_quantity"
-                name="full_quantity"
-                control={<Radio />}
-                label="Full"
-              />
-              <FormControlLabel
-                value="half_quantity"
-                name="half_quantity"
-                control={<Radio />}
-                label="Half"
-              />
-              <FormControlLabel
-                value="na"
-                name="na"
-                control={<Radio />}
-                label="Not Applicable"
-              />
-            </RadioGroup>
-          </FormControl>
-          <br></br>
-          <TextField
-            id="outlined-select-quantity"
-            name="quantity"
-            label="Quantity"
-            value={quantity || ""}
-            helperText="Select the quantity"
-            type="number"
-            onChange={quantityChange}
-          />
+              <MenuItem value="Cash">Cash</MenuItem>
+              <MenuItem value="Debit Card">Debit Card</MenuItem>
+              <MenuItem value="Credit Card">Credit Card</MenuItem>
+              <MenuItem value="UPI">UPI</MenuItem>
+              <MenuItem value="Other">Other</MenuItem>
+            </TextField>
+            <br></br>
+            <TextField
+              id="outlined-select-food"
+              select
+              name="food_name"
+              label="Item"
+              value={name}
+              helperText="Select the food item"
+              onChange={nameChange}
+            >
+              {foodData.map((foodData) => (
+                <MenuItem key={foodData.food_name} value={foodData.food_name}>
+                  {foodData.food_name}
+                </MenuItem>
+              ))}
+            </TextField>
+            <br></br>
 
-          <br></br>
-          <Button
-            variant="contained"
-            color="success"
-            onClick={handleAdd}
-            endIcon={<PostAddTwoToneIcon />}
-          >
-            ADD / UPDATE
-          </Button>
+            <FormControl>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                sx={{
+                  "& .MuiSvgIcon-root": {
+                    fontSize: 28,
+                  },
+                }}
+                value={radio}
+                onChange={radioChange}
+              >
+                <FormControlLabel
+                  value="full_quantity"
+                  name="full_quantity"
+                  control={<Radio />}
+                  label="Full"
+                />
+                <FormControlLabel
+                  value="half_quantity"
+                  name="half_quantity"
+                  control={<Radio />}
+                  label="Half"
+                />
+                <FormControlLabel
+                  value="na"
+                  name="na"
+                  control={<Radio />}
+                  label="Not Applicable"
+                />
+              </RadioGroup>
+            </FormControl>
+            <br></br>
+            <TextField
+              id="outlined-select-quantity"
+              name="quantity"
+              label="Quantity"
+              value={quantity || ""}
+              helperText="Select the quantity"
+              type="number"
+              onChange={quantityChange}
+            />
 
-          <Button
-            variant="contained"
-            color="error"
-            onClick={handleDelete}
-            endIcon={<DeleteIcon />}
-          >
-            DELETE ITEM
-          </Button>
-          <br></br>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={handleFinish}
-            endIcon={<CheckCircleOutlineTwoToneIcon />}
-          >
-            FINISH
-          </Button>
-        </Box>
-      </div>
+            <br></br>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={handleAdd}
+              endIcon={<PostAddTwoToneIcon />}
+            >
+              ADD / UPDATE
+            </Button>
 
-      <div className="flex-child">
-        <Paper sx={{ width: "100%", overflow: "hidden" }}>
-          <TableContainer sx={{ maxHeight: 440 }}>
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>No.</TableCell>
-                  <TableCell align="center">Item</TableCell>
-                  <TableCell align="center">Qty</TableCell>
-                  <TableCell align="center">Rate</TableCell>
-                  <TableCell align="center">Price</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {billList.map((foodData, i) => (
-                  <TableRow
-                    key={i}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {i + 1}
-                    </TableCell>
-                    <TableCell align="center">
-                      {foodData.quantity_type === "half_quantity"
-                        ? foodData.food_name + "(H)"
-                        : foodData.food_name + "(F)"}
-                    </TableCell>
-                    <TableCell align="center">{foodData.quantity}</TableCell>
-                    <TableCell align="center">{foodData.rate}</TableCell>
-                    <TableCell align="center">{foodData.amount}</TableCell>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleDelete}
+              endIcon={<DeleteIcon />}
+            >
+              DELETE ITEM
+            </Button>
+            <br></br>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleFinish}
+              endIcon={<CheckCircleOutlineTwoToneIcon />}
+            >
+              FINISH
+            </Button>
+          </Box>
+        </div>
+
+        <div className="flex-child">
+          <Paper sx={{ width: "100%", overflow: "hidden" }}>
+            <TableContainer sx={{ maxHeight: 440 }}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>No.</TableCell>
+                    <TableCell align="center">Item</TableCell>
+                    <TableCell align="center">Qty</TableCell>
+                    <TableCell align="center">Rate</TableCell>
+                    <TableCell align="center">Price</TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
+                </TableHead>
+                <TableBody>
+                  {billList.map((foodData, i) => (
+                    <TableRow
+                      key={i}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {i + 1}
+                      </TableCell>
+                      <TableCell align="center">
+                        {foodData.quantity_type === "half_quantity"
+                          ? foodData.food_name + "(H)"
+                          : foodData.food_name + "(F)"}
+                      </TableCell>
+                      <TableCell align="center">{foodData.quantity}</TableCell>
+                      <TableCell align="center">{foodData.rate}</TableCell>
+                      <TableCell align="center">{foodData.amount}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

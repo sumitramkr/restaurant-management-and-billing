@@ -41,18 +41,21 @@ app.get("/menu", (req, res) => {
   });
 });
 
-app.get("/showStats", (req, res) => {
+app.get("/showStats/:date1/:date2", (req, res) => {
+  const {date1, date2} = req.params;
+  // console.log(typeof date1);
   const sqlSelect1 =
-    "SELECT food_name, SUM(amount) AS total_sales FROM stats WHERE date BETWEEN '2012-11-11' AND CURDATE() GROUP BY food_name ORDER BY total_sales DESC";
-  db.query(sqlSelect1, (error1, result1) => {
+    "SELECT food_name, SUM(amount) AS total_sales FROM stats WHERE date BETWEEN ? AND ? GROUP BY food_name ORDER BY total_sales DESC";
+  db.query(sqlSelect1, [date1, date2], (error1, result1) => {
     error1 && console.log(error1);
     // res.send(result1);
 
     const sqlSelect2 =
-      "SELECT SUM(subtotal) AS subtotal, SUM(discount_amount) AS discount_amount, SUM(tax_amount) AS tax_amount, SUM(final_amount) AS final_amount FROM (SELECT DISTINCT bill_no, subtotal, discount_amount, tax_amount, final_amount FROM stats WHERE date BETWEEN '2012-11-11' AND CURDATE() GROUP BY bill_no) AS le";
-    db.query(sqlSelect2, (error2, result2) => {
+      "SELECT SUM(subtotal) AS subtotal, SUM(discount_amount) AS discount_amount, SUM(tax_amount) AS tax_amount, SUM(final_amount) AS final_amount FROM (SELECT DISTINCT bill_no, subtotal, discount_amount, tax_amount, final_amount FROM stats WHERE date BETWEEN ? AND ? GROUP BY bill_no) AS le";
+    db.query(sqlSelect2, [date1, date2], (error2, result2) => {
       error2 && console.log(error2);
       res.send(result2.concat(result1));
+      // console.log(result2.concat(result1));
     });
   });
 });
@@ -107,7 +110,7 @@ app.post("/billData", (req, res) => {
     tax_amount,
     final_amount,
   } = billData[0];
-  console.log(billData);
+  // console.log(billData);
 
   const sqlInsert =
     "INSERT INTO stats (date, food_name, amount, bill_no, subtotal, discount_amount, tax_amount, final_amount ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

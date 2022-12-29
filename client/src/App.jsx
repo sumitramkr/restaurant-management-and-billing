@@ -102,10 +102,6 @@ const App = () => {
             }
           />
           <Route
-            path="/stats"
-            element={<Stats authenticated={authenticated} />}
-          />
-          <Route
             path="/printInvoice"
             element={
               <PrintInvoice
@@ -114,6 +110,10 @@ const App = () => {
                 setBillMetaData={setBillMetaData}
               />
             }
+          />
+          <Route
+            path="/showStats"
+            element={<Stats authenticated={authenticated} />}
           />
         </Routes>
       </div>

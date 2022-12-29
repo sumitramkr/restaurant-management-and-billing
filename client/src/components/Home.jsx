@@ -39,7 +39,7 @@ const Home = ({ authenticated }) => {
             variant="contained"
             size="large"
             onClick={() => {
-              navigate("/stats");
+              navigate("/showStats");
             }}
           >
             Stats

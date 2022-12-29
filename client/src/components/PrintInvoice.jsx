@@ -10,15 +10,15 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
   const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault();
-    setBillMetaData(() => []);
     axios
       .post("http://localhost:5000/billData", billMetaData)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
-    window.print();
+      window.print();
   };
 
   const handleHome = () => {
+    setBillMetaData(() => []);
     navigate("/home");
   };
 
