@@ -39,15 +39,17 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleHome}
-        endIcon={<HomeIcon />}
-        align="left"
-        className="left-home-btn menu"
-      ></Button>
-
+      <div>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleHome}
+          endIcon={<HomeIcon />}
+          align="left"
+          className="left-home-btn menu"
+        ></Button>
+      </div>
+<br></br>
       <div>
         <h1 className="menuHead">MENU</h1>
       </div>

@@ -1,11 +1,11 @@
 .css-mkazzp-MuiButtonBase-root-MuiButton-root.menuAdd {
     min-width: 3rem !important;
-    line-height: 3rem !important;
+    line-height: 2.5rem !important;
     font-size: 1.5rem !important;
 }
 
 .css-mkazzp-MuiButtonBase-root-MuiButton-root.menuAdd {
-    margin: 1rem !important;
+    margin: 0.5rem !important;
 }
 
 .css-1ph36rw-MuiButtonBase-root-MuiButton-root.tableBtn-edit {
@@ -34,9 +34,9 @@
     color: #497174;
     font-size: 1.5rem;
     margin-top: 1rem;
+    margin-bottom: 0rem;
 }
 
 .css-sghohy-MuiButtonBase-root-MuiButton-root.menu {
-    margin-top: -1rem!important;
     justify-content: left!important;
 }

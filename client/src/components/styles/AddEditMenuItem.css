@@ -1,0 +1,13 @@
+.addEditItemHead{
+    color: #497174;
+    font-size: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.css-mkazzp-MuiButtonBase-root-MuiButton-root.addEditItem-btm {
+    min-width: 3rem !important;
+    line-height: 2.5rem !important;
+    font-size: 1.5rem !important;
+    margin-top: 2rem;
+}

@@ -109,20 +109,22 @@ const Stats = ({ authenticated }) => {
 
   return (
     <div>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => navigate("/home")}
-        endIcon={<HomeIcon />}
-        align="right"
-        style={{ position: "absolute", top: "0", left: "0" }}
-        className="hidden-print"
-      ></Button>
-      <br></br>
-      <br></br>
-      <br></br>
-
       <div>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => navigate("/home")}
+          endIcon={<HomeIcon />}
+          align="right"
+          style={{ position: "absolute", top: "0", left: "0" }}
+          className="hidden-print"
+        ></Button>
+      </div>
+      <br></br>
+      <div className="statsHead">
+        <h1>Stats</h1>
+      </div>
+      <div className="1st-row">
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DesktopDatePicker
             label="Begin"
@@ -148,10 +150,11 @@ const Stats = ({ authenticated }) => {
           size="large"
           onClick={loadFoodSales}
         >
-          SUBMIT
+          SHOW
         </Button>
       </div>
-      <div>
+
+      <div className="statsTab">
         <Paper
           sx={{
             width: "55%",
@@ -164,7 +167,7 @@ const Stats = ({ authenticated }) => {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell>
+                  <TableCell align="center">
                     <strong>Sr. No.</strong>
                   </TableCell>
                   <TableCell align="center">
@@ -181,7 +184,7 @@ const Stats = ({ authenticated }) => {
                     key={salesData.food_name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell component="th" scope="row" align="center">
                       {i + 1}
                     </TableCell>
                     <TableCell align="center">{salesData.food_name}</TableCell>
@@ -195,7 +198,7 @@ const Stats = ({ authenticated }) => {
           </TableContainer>
         </Paper>
         <br></br>
-        <Button variant="contained" color="error" onClick={handleClickOpen}>
+        <Button variant="contained" color="error" className="stats-btn" onClick={handleClickOpen}>
           More Information
         </Button>
         <Dialog

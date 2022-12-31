@@ -1,24 +1,71 @@
 .flex-container {
-    display: flex;
-    height: calc(100vh);
+  display: flex;
+  height: calc(100vh);
 }
 
 .flex-child {
-    flex: 1;
-    border-top: none;
-    border-bottom: none;
-    border-left-color: #7FBCD2;
-    border-right-color: #7FBCD2;
-    border-left-style: dashed;
-    border-right-style: dashed;
-}  
-
-.flex-child:first-child {
-    margin-right: 5px;
-} 
-
-.left-home-btn {
-    float: left;
-    justify-content: left!important;
+  flex: 1;
+  border-top: none;
+  border-bottom: none;
+  border-left-color: #7fbcd2;
+  border-right-color: #7fbcd2;
+  border-left-style: dashed;
+  border-right-style: dashed;
 }
 
+.flex-child:first-child {
+  margin-right: 5px;
+}
+
+.left-home-btn {
+  float: left;
+  justify-content: left !important;
+}
+
+.invoice-r1,
+.invoice-r2,
+.invoice-r3,
+.invoice-r4,
+.invoice-r5,
+.invoice-r6,
+.invoice-r7 {
+  margin: 0.6rem 0;
+}
+
+.css-ke5b6m-MuiButtonBase-root-MuiButton-root.add {
+  margin-right: 1rem !important;
+  min-width: 3rem !important;
+  line-height: 2rem !important;
+  font-size: 1rem !important;
+}
+
+.css-1sszw6i-MuiButtonBase-root-MuiButton-root.del {
+  margin-left: 1rem !important;
+  min-width: 3rem !important;
+  line-height: 2rem !important;
+  font-size: 1rem !important;
+}
+
+.css-1rwt2y5-MuiButtonBase-root-MuiButton-root.fin {
+    min-width: 3rem !important;
+    width: 23rem;
+    line-height: 2rem !important;
+    font-size: 1rem !important;
+}
+
+.invoiceHead {
+  color: #497174;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.invoiceTb {
+  font-weight: bolder !important;
+  text-align: center !important;
+  font-size: 1rem !important;
+}
+
+.css-34nofg-MuiTableRow-root {
+  background-color: #faf8f1 !important;
+}
