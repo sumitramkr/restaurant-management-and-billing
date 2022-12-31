@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
+import "./styles/UpdateTax.css";
 
 const UpdateTax = ({ authenticated, rates, setRates }) => {
   const navigate = useNavigate();
@@ -55,19 +56,18 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
 
   return (
     <div>
-    <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              navigate("/home");
-            }}
-            endIcon={<HomeIcon />}
-            align="left"
-            className="left-home-btn"
-          ></Button>
-          <br></br>
-          <br></br>
-      <h1>Taxes</h1>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          navigate("/home");
+        }}
+        endIcon={<HomeIcon />}
+        align="left"
+        className="left-home-btn"
+      ></Button>
+      <br></br>
+      <h1 className="taxHead">Taxes</h1>
       <br></br>
       <Box
         component="form"
@@ -78,6 +78,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         autoComplete="off"
       >
         <TextField
+        className="tax"
           id="outlined-required"
           label="CGST"
           type="number"
@@ -90,6 +91,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         />
 
         <TextField
+        className="tax"
           id="outlined-required"
           label="SGST"
           type="number"
@@ -104,6 +106,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         <br></br>
 
         <Button
+          className="tax-btn"
           variant="contained"
           onClick={updateRates}
           color="success"

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import PrintIcon from "@mui/icons-material/Print";
 import HomeIcon from "@mui/icons-material/Home";
-import "./PrintInvoice.css";
+import "./styles/PrintInvoice.css";
 
 const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
   const navigate = useNavigate();

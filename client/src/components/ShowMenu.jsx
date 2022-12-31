@@ -11,7 +11,7 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
 import { toast } from "react-toastify";
-import "./ShowMenu.css";
+import "./styles/ShowMenu.css";
 
 const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
   const navigate = useNavigate();
@@ -38,16 +38,18 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
   };
 
   return (
-    <div className="parent">
-      <div className="btn-home">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleHome}
-          endIcon={<HomeIcon />}
-          align="left"
-          className="left-home-btn"
-        ></Button>
+    <div>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleHome}
+        endIcon={<HomeIcon />}
+        align="left"
+        className="left-home-btn menu"
+      ></Button>
+
+      <div>
+        <h1 className="menuHead">MENU</h1>
       </div>
       <br></br>
       <br></br>
@@ -64,12 +66,22 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Food Id</TableCell>
-                  <TableCell align="center">Food Name</TableCell>
-                  <TableCell align="center">Category</TableCell>
-                  <TableCell align="center">Half Price</TableCell>
-                  <TableCell align="center">Full Price</TableCell>
-                  <TableCell align="center">Action</TableCell>
+                  <TableCell className="menuTb">Food Id</TableCell>
+                  <TableCell className="menuTb" align="center">
+                    Food Name
+                  </TableCell>
+                  <TableCell className="menuTb" align="center">
+                    Category
+                  </TableCell>
+                  <TableCell className="menuTb" align="center">
+                    Half Price
+                  </TableCell>
+                  <TableCell className="menuTb" align="center">
+                    Full Price
+                  </TableCell>
+                  <TableCell className="menuTb" align="center">
+                    Action
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -78,7 +90,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
                     key={foodData.food_id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell component="th" scope="row" className="1stth">
                       {foodData.food_id}
                     </TableCell>
                     <TableCell align="center">{foodData.food_name}</TableCell>
@@ -87,6 +99,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
                     <TableCell align="center">{foodData.full_price}</TableCell>
                     <TableCell align="center">
                       <Button
+                        className="tableBtn-edit"
                         color="success"
                         variant="contained"
                         size="small"
@@ -96,8 +109,8 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
                       >
                         Edit
                       </Button>
-
                       <Button
+                        className="tableBtn-del"
                         color="error"
                         variant="contained"
                         size="small"
@@ -116,6 +129,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
         </Paper>
         <br></br>
         <Button
+          className="menuAdd"
           color="success"
           variant="contained"
           size="large"
@@ -125,7 +139,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
         >
           ADD ITEM
         </Button>
-        </div>
+      </div>
     </div>
   );
 };

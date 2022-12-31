@@ -21,7 +21,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import HomeIcon from "@mui/icons-material/Home";
-import "./Invoice.css";
+import "./styles/Invoice.css";
 
 const Invoice = ({
   authenticated,
@@ -269,7 +269,6 @@ const Invoice = ({
               name="bill_no"
               label="Bill Number"
               value={timestamp}
-              helperText="Bill Number"
               type="number"
             />
             <TextField
@@ -278,7 +277,6 @@ const Invoice = ({
               name="date"
               label="Date"
               value={date}
-              helperText="Date"
               type="date"
             />
             <br></br>
@@ -288,7 +286,6 @@ const Invoice = ({
               name="discount"
               label="Discount"
               value={discount || ""}
-              helperText="Select the discount"
               type="number"
               onChange={quantityChange}
             />
@@ -298,7 +295,6 @@ const Invoice = ({
               name="payment_mode"
               label="Payment Mode"
               value={paymentMode || ""}
-              helperText="Select the payment mode"
               onChange={handlePaymentMode}
             >
               <MenuItem value="Cash">Cash</MenuItem>
@@ -314,7 +310,6 @@ const Invoice = ({
               name="food_name"
               label="Item"
               value={name}
-              helperText="Select the food item"
               onChange={nameChange}
             >
               {foodData.map((foodData) => (
@@ -364,7 +359,6 @@ const Invoice = ({
               name="quantity"
               label="Quantity"
               value={quantity || ""}
-              helperText="Select the quantity"
               type="number"
               onChange={quantityChange}
             />
