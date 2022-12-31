@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import HomeIcon from "@mui/icons-material/Home";
+import "./styles/UpdateTax.css";
 
 const UpdateTax = ({ authenticated, rates, setRates }) => {
   const navigate = useNavigate();
@@ -29,6 +30,14 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
       ...rates,
       [name]: parseInt(value),
     }));
+
+    if(rates.CGST < 0) {
+    let helperText1="(-) Negative value";
+  }
+    if(rates.SGST < 0) {
+    let helperText2="(-) Negative value";
+  }
+
   };
 
   const updateRates = (e) => {
@@ -55,19 +64,18 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
 
   return (
     <div>
-    <Button
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              navigate("/home");
-            }}
-            endIcon={<HomeIcon />}
-            align="left"
-            className="left-home-btn"
-          ></Button>
-          <br></br>
-          <br></br>
-      <h1>Taxes</h1>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => {
+          navigate("/home");
+        }}
+        endIcon={<HomeIcon />}
+        align="left"
+        className="left-home-btn"
+      ></Button>
+      <br></br>
+      <h1 className="taxHead">TAXES</h1>
       <br></br>
       <Box
         component="form"
@@ -78,6 +86,9 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         autoComplete="off"
       >
         <TextField
+        className="tax"
+        error={rates.CGST < 0}
+        helperText={rates.CGST < 0 && "(-) Negative Input"}
           id="outlined-required"
           label="CGST"
           type="number"
@@ -90,6 +101,9 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         />
 
         <TextField
+        className="tax"
+        error={rates.SGST < 0}
+        helperText={rates.CGST < 0 && "(-) Negative Input"}
           id="outlined-required"
           label="SGST"
           type="number"
@@ -104,6 +118,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         <br></br>
 
         <Button
+          className="tax-btn"
           variant="contained"
           onClick={updateRates}
           color="success"

@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import PrintIcon from "@mui/icons-material/Print";
 import HomeIcon from "@mui/icons-material/Home";
-import "./PrintInvoice.css";
+import "./styles/PrintInvoice.css";
 
 const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
   const navigate = useNavigate();
@@ -156,7 +156,7 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
             </div>
           </div>
 
-          {billMetaData[0].discount_amount && (
+          {!!billMetaData[0].discount_amount && (
             <div className="row-print">
               <div className="column-print">
                 <p
@@ -174,7 +174,7 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
             </div>
           )}
 
-          {billMetaData[0].discount_amount && (
+          {!!billMetaData[0].discount_amount && (
             <div className="row-print">
               <div className="column-print">
                 <p

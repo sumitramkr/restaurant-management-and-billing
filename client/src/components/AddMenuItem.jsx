@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
-
+import HomeIcon from "@mui/icons-material/Home";
+import "./styles/AddEditMenuItem.css";
 
 const AddMenuItem = ({ autheticated, foodData }) => {
   const navigate = useNavigate();
@@ -62,72 +63,82 @@ const AddMenuItem = ({ autheticated, foodData }) => {
 
   return (
     <div>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="Food Name"
-            name="food_name"
-            onChange={loadFood}
-          />
-        </div>
-        <div>
-          <TextField
-            required
-            id="outlined-required"
-            label="Category"
-            name="category"
-            onChange={loadFood}
-          />
-        </div>
-        <div>
-          <TextField
-            type="number"
-            required
-            id="outlined-required"
-            label="Half Price"
-            name="half_price"
-            onChange={loadFood}
-          />
-        </div>
-        <div>
-          <TextField
-            type="number"
-            required
-            id="outlined-required"
-            label="Full Price"
-            name="full_price"
-            onChange={loadFood}
-          />
-        </div>
-        <Button
-          color="success"
-          variant="contained"
-          size="large"
-          onClick={addFood}
-        >
-          ADD ITEM
-        </Button>
-        <br></br>
+      <div>
         <Button
           color="primary"
           variant="contained"
-          size="large"
+          align="left"
+        className="left-home-btn"
+        endIcon={<HomeIcon />}
           onClick={() => {
             navigate("/home");
           }}
         >
-          HOME PAGE
         </Button>
-      </Box>
+      </div>
+      <br></br>
+      <div>
+        <h1 className="addEditItemHead">ADD ITEM</h1>
+      </div>
+      <br></br>
+      <div>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div className="addmenutab">
+            <TextField
+              required
+              id="outlined-required"
+              label="Food Name"
+              name="food_name"
+              onChange={loadFood}
+            />
+          </div>
+          <div className="addmenutab">
+            <TextField
+              required
+              id="outlined-required"
+              label="Category"
+              name="category"
+              onChange={loadFood}
+            />
+          </div>
+          <div className="addmenutab">
+            <TextField
+              type="number"
+              required
+              id="outlined-required"
+              label="Half Price"
+              name="half_price"
+              onChange={loadFood}
+            />
+          </div>
+          <div className="addmenutab">
+            <TextField
+              type="number"
+              required
+              id="outlined-required"
+              label="Full Price"
+              name="full_price"
+              onChange={loadFood}
+            />
+          </div>
+          <Button
+            color="success"
+            variant="contained"
+            size="large"
+            className="addEditItem-btm"
+            onClick={addFood}
+          >
+            ADD ITEM
+          </Button>
+        </Box>
+      </div>
     </div>
   );
 };

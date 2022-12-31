@@ -1,0 +1,16 @@
+.taxHead{
+    color: #497174;
+    font-size: 3rem;
+    margin-top: 3rem;
+}
+
+.css-mkazzp-MuiButtonBase-root-MuiButton-root.tax-btn {
+    margin-top: 2rem;
+    min-width: 3rem !important;
+    line-height: 3rem !important;
+    font-size: 1.3rem !important;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.tax {
+    border-width: 1rem!important;
+}
