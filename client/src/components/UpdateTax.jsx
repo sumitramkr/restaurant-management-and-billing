@@ -30,14 +30,6 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
       ...rates,
       [name]: parseInt(value),
     }));
-
-    if(rates.CGST < 0) {
-    let helperText1="(-) Negative value";
-  }
-    if(rates.SGST < 0) {
-    let helperText2="(-) Negative value";
-  }
-
   };
 
   const updateRates = (e) => {
