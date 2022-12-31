@@ -21,9 +21,9 @@ app.get("/", (req, res) => {
   res.send("Default home route");
 });
 
-app.get("/login", (req, res) => {
-  res.send(process.env.LOGIN_PASSWORD);
-});
+// app.get("/login", (req, res) => {
+//   res.send(process.env.LOGIN_PASSWORD);
+// });
 
 app.get("/getRates", (req, res) => {
   const sqlSelect = "SELECT * FROM tax";
@@ -42,7 +42,7 @@ app.get("/menu", (req, res) => {
 });
 
 app.get("/showStats/:date1/:date2", (req, res) => {
-  const {date1, date2} = req.params;
+  const { date1, date2 } = req.params;
   // console.log(typeof date1);
   const sqlSelect1 =
     "SELECT food_name, SUM(amount) AS total_sales FROM stats WHERE date BETWEEN ? AND ? GROUP BY food_name ORDER BY total_sales DESC";
