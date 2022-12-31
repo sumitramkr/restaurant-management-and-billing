@@ -78,7 +78,7 @@ const AddMenuItem = ({ autheticated, foodData }) => {
       </div>
       <br></br>
       <div>
-        <h1 className="addEditItemHead">Add Item</h1>
+        <h1 className="addEditItemHead">ADD ITEM</h1>
       </div>
       <br></br>
       <div>

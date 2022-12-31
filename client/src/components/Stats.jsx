@@ -19,6 +19,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import "./styles/Stats.css";
 
 const Stats = ({ authenticated }) => {
   const navigate = useNavigate();
@@ -115,122 +116,136 @@ const Stats = ({ authenticated }) => {
           color="primary"
           onClick={() => navigate("/home")}
           endIcon={<HomeIcon />}
-          align="right"
+          align="left"
           style={{ position: "absolute", top: "0", left: "0" }}
-          className="hidden-print"
+          className="hidden-print left-home-btn"
         ></Button>
       </div>
       <br></br>
-      <div className="statsHead">
-        <h1>Stats</h1>
+      <div>
+        <h1 className="statsHead">STATS</h1>
       </div>
-      <div className="1st-row">
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DesktopDatePicker
-            label="Begin"
+      <div className="first-row">
+        <div className="child">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker
+              label="Begin"
+              color="success"
+              inputFormat="YYYY-MM-DD"
+              value={date1 ?? ""}
+              onChange={handleDate1}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DesktopDatePicker
+              label="End"
+              inputFormat="YYYY-MM-DD"
+              value={date2 ?? ""}
+              onChange={handleDate2}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
+          <Button
+            className="stats-btn"
             color="success"
-            inputFormat="YYYY-MM-DD"
-            value={date1 ?? ""}
-            onChange={handleDate1}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DesktopDatePicker
-            label="End"
-            inputFormat="YYYY-MM-DD"
-            value={date2 ?? ""}
-            onChange={handleDate2}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </LocalizationProvider>
-        <Button
-          color="success"
-          variant="contained"
-          size="large"
-          onClick={loadFoodSales}
-        >
-          SHOW
-        </Button>
+            variant="contained"
+            size="large"
+            onClick={loadFoodSales}
+          >
+            SHOW
+          </Button>
+        </div>
       </div>
 
-      <div className="statsTab">
-        <Paper
-          sx={{
-            width: "55%",
-            overflow: "hidden",
-            textAlign: "center",
-            margin: "auto",
-          }}
-        >
-          <TableContainer sx={{ maxHeight: "40rem" }}>
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">
-                    <strong>Sr. No.</strong>
-                  </TableCell>
-                  <TableCell align="center">
-                    <strong>Food Name</strong>
-                  </TableCell>
-                  <TableCell align="center">
-                    <strong>Total Sales</strong>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {sales.slice(1).map((salesData, i) => (
-                  <TableRow
-                    key={salesData.food_name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row" align="center">
-                      {i + 1}
-                    </TableCell>
-                    <TableCell align="center">{salesData.food_name}</TableCell>
+      {!!sales[0].final_amount && (
+        <div className="statsTab">
+          <Paper
+            sx={{
+              width: "55%",
+              overflow: "hidden",
+              textAlign: "center",
+              margin: "auto",
+            }}
+          >
+            <TableContainer sx={{ maxHeight: "40rem" }}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
                     <TableCell align="center">
-                      ₹ {salesData.total_sales}
+                      <strong>Sr. No.</strong>
+                    </TableCell>
+                    <TableCell align="center">
+                      <strong>Food Name</strong>
+                    </TableCell>
+                    <TableCell align="center">
+                      <strong>Total Sales</strong>
                     </TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Paper>
-        <br></br>
-        <Button variant="contained" color="error" className="stats-btn" onClick={handleClickOpen}>
-          More Information
-        </Button>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">
-            <u>{"Data from " + rdate1 + " to " + rdate2}</u>
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              <strong>Subtotal: ₹ {sales[0].subtotal}</strong>
-              <br></br>
-              <br></br>
-              <strong>Discounts: ₹ {sales[0].discount_amount}</strong>
-              <br></br>
-              <br></br>
-              <strong>Total Taxes: ₹ {sales[0].tax_amount}</strong>
-              <br></br>
-              <br></br>
-              <strong>Total Sales: ₹ {sales[0].final_amount.toFixed(2)}</strong>
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} autoFocus>
-              Looks Good?
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+                </TableHead>
+                <TableBody>
+                  {sales.slice(1).map((salesData, i) => (
+                    <TableRow
+                      key={salesData.food_name}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell component="th" scope="row" align="center">
+                        {i + 1}
+                      </TableCell>
+                      <TableCell align="center">
+                        {salesData.food_name}
+                      </TableCell>
+                      <TableCell align="center">
+                        ₹ {salesData.total_sales}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+          <br></br>
+          <Button
+            variant="contained"
+            color="error"
+            className="stats-btn"
+            onClick={handleClickOpen}
+          >
+            More Information
+          </Button>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              <u>{"Data from " + rdate1 + " to " + rdate2}</u>
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                <strong>Subtotal: ₹ {sales[0].subtotal}</strong>
+                <br></br>
+                <br></br>
+                <strong>Discounts: ₹ {sales[0].discount_amount}</strong>
+                <br></br>
+                <br></br>
+                <strong>Total Taxes: ₹ {sales[0].tax_amount}</strong>
+                <br></br>
+                <br></br>
+                <strong>
+                  Total Sales: ₹ {sales[0].final_amount.toFixed(2)}
+                </strong>
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} autoFocus>
+                Looks Good?
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      )}
     </div>
   );
 };

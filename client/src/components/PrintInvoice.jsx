@@ -156,7 +156,7 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
             </div>
           </div>
 
-          {billMetaData[0].discount_amount && (
+          {!!billMetaData[0].discount_amount && (
             <div className="row-print">
               <div className="column-print">
                 <p
@@ -174,7 +174,7 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
             </div>
           )}
 
-          {billMetaData[0].discount_amount && (
+          {!!billMetaData[0].discount_amount && (
             <div className="row-print">
               <div className="column-print">
                 <p

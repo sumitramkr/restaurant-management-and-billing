@@ -71,7 +71,7 @@ const EditMenuItem = ({ autheticated }) => {
       </div>
       <br></br>
       <div>
-        <h1 className="addEditItemHead">Edit Item</h1>
+        <h1 className="addEditItemHead">EDIT ITEM</h1>
       </div>
       <br></br>
       <div>

@@ -58,7 +58,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
   return (
     <div>
-      <h1>Welcome Again!</h1>
+      <h1>WELCOME AGAIN!</h1>
       <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
         <OutlinedInput

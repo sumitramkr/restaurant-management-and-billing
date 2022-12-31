@@ -30,6 +30,14 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
       ...rates,
       [name]: parseInt(value),
     }));
+
+    if(rates.CGST < 0) {
+    let helperText1="(-) Negative value";
+  }
+    if(rates.SGST < 0) {
+    let helperText2="(-) Negative value";
+  }
+
   };
 
   const updateRates = (e) => {
@@ -67,7 +75,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         className="left-home-btn"
       ></Button>
       <br></br>
-      <h1 className="taxHead">Taxes</h1>
+      <h1 className="taxHead">TAXES</h1>
       <br></br>
       <Box
         component="form"
@@ -79,6 +87,8 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
       >
         <TextField
         className="tax"
+        error={rates.CGST < 0}
+        helperText={rates.CGST < 0 && "(-) Negative Input"}
           id="outlined-required"
           label="CGST"
           type="number"
@@ -92,6 +102,8 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
 
         <TextField
         className="tax"
+        error={rates.SGST < 0}
+        helperText={rates.CGST < 0 && "(-) Negative Input"}
           id="outlined-required"
           label="SGST"
           type="number"

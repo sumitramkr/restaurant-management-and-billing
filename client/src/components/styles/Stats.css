@@ -1,0 +1,26 @@
+.statsHead {
+  color: #497174;
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.css-mkazzp-MuiButtonBase-root-MuiButton-root.stats-btn {
+  margin-top: 0.6rem;
+  margin-left: 1rem;
+}
+
+.first-row {
+    margin: 2rem;
+}
+
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    margin: 0.3rem!important;
+}
+
+.css-1sszw6i-MuiButtonBase-root-MuiButton-root.stats-btn {
+    margin-right: 1rem !important;
+    min-width: 3rem !important;
+    line-height: 3rem !important;
+    font-size: 1.2rem !important;
+}

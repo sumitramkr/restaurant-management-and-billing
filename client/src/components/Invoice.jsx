@@ -176,7 +176,7 @@ const Invoice = ({
     if (!discount || !paymentMode) {
       toast.error("Enter All Fields!");
     } else {
-      if (window.confirm("Create Invoice? (check Table number & Bill Type)")) {
+      if (window.confirm("Create Invoice? Check DISCOUNT again!!!")) {
         for (let i = 0; i < billList.length; i++) {
           amounts += billList[i].amount;
         }
@@ -255,7 +255,7 @@ const Invoice = ({
           ></Button>
 
           <div>
-            <h1 className="invoiceHead">Invoice</h1>
+            <h1 className="invoiceHead">INVOICE</h1>
             <Box
               component="form"
               sx={{
@@ -285,6 +285,8 @@ const Invoice = ({
               <br></br>
               <div className="invoice-r2">
                 <TextField
+                error={discount < 0}
+                helperText={discount < 0 && "(-) Negative Input"}
                   id="outlined-discount"
                   name="discount"
                   label="Discount"
@@ -366,6 +368,8 @@ const Invoice = ({
               <br></br>
               <div className="invoice-r5">
                 <TextField
+                error={quantity < 0}
+                helperText={quantity < 0 && "(-) Negative Input"}
                   id="outlined-select-quantity"
                   name="quantity"
                   label="Quantity"
@@ -413,7 +417,7 @@ const Invoice = ({
 
         <div className="flex-child">
         <div>
-        <h1 className="invoiceHead">Preview</h1>
+        <h1 className="invoiceHead">PREVIEW</h1>
         </div>
           <div>
             <Paper sx={{ width: "100%", overflow: "hidden" }}>
