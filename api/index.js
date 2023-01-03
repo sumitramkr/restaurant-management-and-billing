@@ -18,12 +18,12 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Default home route");
+  const sqlRemove = "DELETE FROM stats WHERE date < DATEADD(MONTH, -6, GETDATE())";
+  db.query(sqlRemove, (error, result) => {
+    error && console.log(error);
+    res.send(result);
+  });
 });
-
-// app.get("/login", (req, res) => {
-//   res.send(process.env.LOGIN_PASSWORD);
-// });
 
 app.get("/getRates", (req, res) => {
   const sqlSelect = "SELECT * FROM tax";
