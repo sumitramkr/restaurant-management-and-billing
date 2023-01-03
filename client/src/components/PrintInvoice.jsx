@@ -5,6 +5,8 @@ import PrintIcon from "@mui/icons-material/Print";
 import "./styles/PrintInvoice.css";
 import Navbar from "./Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
+import Paper from "@mui/material/Paper";
+import BottomNavigation from '@mui/material/BottomNavigation';
 
 const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
   const { isAuthenticated } = useAuth0();
@@ -256,6 +258,11 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
               PRINT
             </Button>
           </div>
+        </div>
+        <div className="hidden-print">
+        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+        <BottomNavigation />
+        </Paper>
         </div>
       </div>
     )

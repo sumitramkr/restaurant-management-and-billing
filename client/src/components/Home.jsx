@@ -5,7 +5,9 @@ import Button from "@mui/material/Button";
 import "./styles/Home.css";
 import Navbar from "./Navbar";
 import { toast } from "react-toastify";
+import Paper from "@mui/material/Paper";
 import { useAuth0 } from "@auth0/auth0-react";
+import BottomNavigation from "@mui/material/BottomNavigation";
 
 const Home = ({ authenticated }) => {
   const navigate = useNavigate();
@@ -74,6 +76,14 @@ const Home = ({ authenticated }) => {
             </Button>
           </div>
         </Box>
+      </div>
+      <div>
+        <Paper
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          elevation={3}
+        >
+          <BottomNavigation />
+        </Paper>
       </div>
     </div>
   );

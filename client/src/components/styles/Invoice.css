@@ -69,3 +69,15 @@
 .css-34nofg-MuiTableRow-root {
   background-color: #faf8f1 !important;
 }
+
+.css-dwuj3p-MuiTableCell-root.deleteCell{
+margin: 0rem!important;
+padding: 0rem!important;
+}
+
+.css-1yhpg23-MuiTableCell-root.deleteColumn{
+margin: 0rem!important;
+padding: 0rem!important;
+}
+
+

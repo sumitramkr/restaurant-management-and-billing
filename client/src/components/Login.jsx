@@ -4,6 +4,8 @@ import Button from "@mui/material/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./styles/Login.css";
 import Navbar from "./Navbar";
+import Paper from "@mui/material/Paper";
+import BottomNavigation from '@mui/material/BottomNavigation';
 
 const Login = ({ authenticated, setAuthenticated }) => {
   const navigate = useNavigate();
@@ -43,6 +45,14 @@ const Login = ({ authenticated, setAuthenticated }) => {
         </Button>
         )
       </div>
+      <div>
+          <Paper
+            sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+            elevation={3}
+          >
+            <BottomNavigation />
+          </Paper>
+        </div>
     </div>
   );
 };

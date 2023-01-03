@@ -37,6 +37,10 @@
   margin-top: 8rem;
 }
 
+.css-16lloyr-MuiBottomNavigation-root {
+  background-color: #1976d2!important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

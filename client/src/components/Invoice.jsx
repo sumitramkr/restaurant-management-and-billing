@@ -23,6 +23,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./styles/Invoice.css";
 import Navbar from "./Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
+import BottomNavigation from "@mui/material/BottomNavigation";
 
 const Invoice = ({
   authenticated,
@@ -224,20 +225,34 @@ const Invoice = ({
     setPaymentMode(() => e.target.value);
   };
 
-  const handleDelete = (e) => {
-    for (let i = 0; i < billList.length; i++) {
-      if (
-        billList[i].food_name === name &&
-        billList[i].quantity_type === radio
-      ) {
-        const newArr = [...billList];
-        newArr.splice(i, 1);
-        setBillList(() => newArr);
-        break;
-      } else {
-        toast.error("Item and Portion are NOT in bill!");
-      }
+  // const handleDelete = (e) => {
+  //   for (let i = 0; i < billList.length; i++) {
+  //     if (
+  //       billList[i].food_name === name &&
+  //       billList[i].quantity_type === radio
+  //     ) {
+  //       const newArr = [...billList];
+  //       newArr.splice(i, 1);
+  //       setBillList(() => newArr);
+  //       break;
+  //     } else {
+  //       toast.error("Item and Portion are NOT in bill!");
+  //     }
+  //   }
+  // };
+
+  const handleDelete1 = (i) => {
+    const newArr = [...billList];
+    if (billList[i].quantity_type === "half_quantity") {
+      toast.success(billList[i].food_name + " (Half) Deleted!");
+    } else if (billList[i].quantity_type === "full_quantity") {
+      toast.success(billList[i].food_name + " (Full) Deleted!");
+    } else {
+      toast.success(billList[i].food_name + " Deleted!");
     }
+
+    newArr.splice(i, 1);
+    setBillList(() => newArr);
   };
 
   return (
@@ -382,15 +397,6 @@ const Invoice = ({
                   >
                     ADD / UPDATE
                   </Button>
-                  <Button
-                    className="del"
-                    variant="contained"
-                    color="error"
-                    onClick={handleDelete}
-                    endIcon={<DeleteIcon />}
-                  >
-                    DELETE ITEM
-                  </Button>
                 </div>
                 <br></br>
                 <div className="invoice-r7">
@@ -431,6 +437,10 @@ const Invoice = ({
                         <TableCell align="center" className="invoiceTb">
                           Price
                         </TableCell>
+                        <TableCell
+                          align="center"
+                          className="deleteCell"
+                        ></TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -456,6 +466,14 @@ const Invoice = ({
                           <TableCell align="center">
                             {foodData.amount}
                           </TableCell>
+                          <TableCell align="center" className="deleteColumn">
+                            <Button
+                              color="inherit"
+                              size="small"
+                              onClick={() => handleDelete1(i)}
+                              endIcon={<DeleteIcon />}
+                            ></Button>
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
@@ -464,6 +482,14 @@ const Invoice = ({
               </Paper>
             </div>
           </div>
+        </div>
+        <div>
+          <Paper
+            sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+            elevation={3}
+          >
+            <BottomNavigation />
+          </Paper>
         </div>
       </div>
     )
