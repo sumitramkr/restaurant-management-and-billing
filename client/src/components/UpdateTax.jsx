@@ -53,7 +53,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
   };
 
   useEffect(() => {
-    console.log(rates);
+    // console.log(rates);
   }, [rates]);
 
   return (
