@@ -1,93 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
-import md5 from "md5";
-import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useAuth0 } from "@auth0/auth0-react";
+import "./styles/Login.css";
+import Navbar from "./Navbar";
 
 const Login = ({ authenticated, setAuthenticated }) => {
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [password, setPassword] = useState("");
-  let [recieved, setRecieved] = useState("");
   const navigate = useNavigate();
-
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
-
-  const loadPassword = async () => {
-    const response = await axios.get("http://localhost:5000/login");
-    setPassword(response.data);
-  };
-
-  useEffect(() => {
-    loadPassword();
-  }, []);
-
-  const manageRecieved = (e) => {
-    setRecieved(md5(e.target.value));
-  };
-
-  const submitPassword = (e) => {
-    e.preventDefault();
-
-    if (password !== recieved) {
-      toast.error("Wrong Password! Try Again");
-    } else {
-      setAuthenticated(1);
-      toast.success("Yayy! Redirecting in 3...2...1");
-    }
-  };
-
-  useEffect(() => {
-    if (authenticated === 1) {
-      const timer = setTimeout(() => {
-        navigate("/home");
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [authenticated, navigate]);
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  isAuthenticated && navigate("/home");
 
   return (
     <div>
-      <h1>WELCOME AGAIN!</h1>
-      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-        <OutlinedInput
-          id="outlined-adornment-password"
-          type={showPassword ? "text" : "password"}
-          onChange={manageRecieved}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                onMouseDown={handleMouseDownPassword}
-                edge="end"
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-          label="Password"
-        />
+      <div className="navbar">
+        <Navbar showText="ADMIN" />
+      </div>
+      <div>
+        <h1 className="loginHead">KALIKA DHABA</h1>
+
+        <h2 className="loginSub">WELCOME AGAIN!</h2>
+      </div>
+      <div>
+        (
         <Button
+          className="login-btn"
           variant="contained"
-          onClick={submitPassword}
-          color="success"
+          onClick={() => loginWithRedirect()}
+          color="primary"
           size="large"
         >
-          SUBMIT
+          Click Here To Login
         </Button>
-      </FormControl>
+        ) (
+        <Button
+          className="login-btn"
+          variant="contained"
+          onClick={() => logout({ returnTo: window.location.origin })}
+          color="primary"
+          size="large"
+        >
+          Logout
+        </Button>
+        )
+      </div>
     </div>
   );
 };

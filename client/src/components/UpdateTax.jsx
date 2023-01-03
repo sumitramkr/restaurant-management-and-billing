@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import HomeIcon from "@mui/icons-material/Home";
 import "./styles/UpdateTax.css";
+import Navbar from "./Navbar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const UpdateTax = ({ authenticated, rates, setRates }) => {
-  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
 
   const getRates = async () => {
     const response = await axios.get("http://localhost:5000/getRates");
@@ -55,71 +55,62 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
   }, [rates]);
 
   return (
-    <div>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => {
-          navigate("/home");
-        }}
-        endIcon={<HomeIcon />}
-        align="left"
-        className="left-home-btn"
-      ></Button>
-      <br></br>
-      <h1 className="taxHead">TAXES</h1>
-      <br></br>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-        className="tax"
-        error={rates.CGST < 0}
-        helperText={rates.CGST < 0 && "(-) Negative Input"}
-          id="outlined-required"
-          label="CGST"
-          type="number"
-          name="CGST"
-          onChange={handleChange}
-          value={rates.CGST || ""}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-
-        <TextField
-        className="tax"
-        error={rates.SGST < 0}
-        helperText={rates.CGST < 0 && "(-) Negative Input"}
-          id="outlined-required"
-          label="SGST"
-          type="number"
-          name="SGST"
-          onChange={handleChange}
-          value={rates.SGST || ""}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-
-        <br></br>
-
-        <Button
-          className="tax-btn"
-          variant="contained"
-          onClick={updateRates}
-          color="success"
-          size="large"
-        >
-          UPDATE TAXES
-        </Button>
-      </Box>
-    </div>
+    isAuthenticated && (
+      <div>
+        <div className="navbar">
+          <Navbar showText="UPDATE TAX" />
+        </div>
+        <div className="below-navbar">
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              className="tax"
+              error={rates.CGST < 0}
+              helperText={rates.CGST < 0 && "(-) Negative Input"}
+              id="outlined-required"
+              label="CGST"
+              type="number"
+              name="CGST"
+              onChange={handleChange}
+              value={rates.CGST || ""}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <TextField
+              className="tax"
+              error={rates.SGST < 0}
+              helperText={rates.CGST < 0 && "(-) Negative Input"}
+              id="outlined-required"
+              label="SGST"
+              type="number"
+              name="SGST"
+              onChange={handleChange}
+              value={rates.SGST || ""}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <br></br>
+            <Button
+              className="tax-btn"
+              variant="contained"
+              onClick={updateRates}
+              color="success"
+              size="large"
+            >
+              UPDATE TAXES
+            </Button>
+          </Box>
+        </div>
+      </div>
+    )
   );
 };
 

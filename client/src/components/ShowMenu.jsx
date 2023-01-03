@@ -9,12 +9,14 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import HomeIcon from "@mui/icons-material/Home";
 import { toast } from "react-toastify";
 import "./styles/ShowMenu.css";
+import Navbar from "./Navbar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
 
   const loadMenu = async () => {
     const response = await axios.get("http://localhost:5000/menu");
@@ -33,28 +35,11 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
     }
   };
 
-  const handleHome = () => {
-    navigate("/home");
-  };
-
-  return (
+  return ( isAuthenticated &&
     <div>
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleHome}
-          endIcon={<HomeIcon />}
-          align="left"
-          className="left-home-btn menu"
-        ></Button>
+      <div className="navbar">
+        <Navbar showText="MENU" />
       </div>
-<br></br>
-      <div>
-        <h1 className="menuHead">MENU</h1>
-      </div>
-      <br></br>
-      <br></br>
       <div className="paper">
         <Paper
           sx={{

@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { toast } from "react-toastify";
-import HomeIcon from "@mui/icons-material/Home";
 import "./styles/AddEditMenuItem.css";
+import Navbar from "./Navbar";
+import { useAuth0 } from "@auth0/auth0-react";
 
-const AddMenuItem = ({ autheticated, foodData }) => {
+const AddMenuItem = ({ foodData }) => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
 
   const [food, setFood] = useState({
     food_name: "",
@@ -62,84 +64,71 @@ const AddMenuItem = ({ autheticated, foodData }) => {
   };
 
   return (
-    <div>
+    isAuthenticated && (
       <div>
-        <Button
-          color="primary"
-          variant="contained"
-          align="left"
-        className="left-home-btn"
-        endIcon={<HomeIcon />}
-          onClick={() => {
-            navigate("/home");
-          }}
-        >
-        </Button>
-      </div>
-      <br></br>
-      <div>
-        <h1 className="addEditItemHead">ADD ITEM</h1>
-      </div>
-      <br></br>
-      <div>
-        <Box
-          component="form"
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <div className="addmenutab">
-            <TextField
-              required
-              id="outlined-required"
-              label="Food Name"
-              name="food_name"
-              onChange={loadFood}
-            />
-          </div>
-          <div className="addmenutab">
-            <TextField
-              required
-              id="outlined-required"
-              label="Category"
-              name="category"
-              onChange={loadFood}
-            />
-          </div>
-          <div className="addmenutab">
-            <TextField
-              type="number"
-              required
-              id="outlined-required"
-              label="Half Price"
-              name="half_price"
-              onChange={loadFood}
-            />
-          </div>
-          <div className="addmenutab">
-            <TextField
-              type="number"
-              required
-              id="outlined-required"
-              label="Full Price"
-              name="full_price"
-              onChange={loadFood}
-            />
-          </div>
-          <Button
-            color="success"
-            variant="contained"
-            size="large"
-            className="addEditItem-btm"
-            onClick={addFood}
+        <div className="navbar">
+          <Navbar showText="ADD ITEM" />
+        </div>
+        <div className="below-navbar">
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
           >
-            ADD ITEM
-          </Button>
-        </Box>
+            <div className="addmenutab">
+              <TextField
+                required
+                id="outlined-required"
+                label="Food Name"
+                name="food_name"
+                onChange={loadFood}
+              />
+            </div>
+            <div className="addmenutab">
+              <TextField
+                required
+                id="outlined-required"
+                label="Category"
+                name="category"
+                onChange={loadFood}
+              />
+            </div>
+            <div className="addmenutab">
+              <TextField
+                type="number"
+                required
+                id="outlined-required"
+                label="Half Price"
+                name="half_price"
+                onChange={loadFood}
+              />
+            </div>
+            <div className="addmenutab">
+              <TextField
+                type="number"
+                required
+                id="outlined-required"
+                label="Full Price"
+                name="full_price"
+                onChange={loadFood}
+              />
+            </div>
+            <Button
+              color="success"
+              variant="contained"
+              size="large"
+              className="addEditItem-btm"
+              onClick={addFood}
+            >
+              ADD ITEM
+            </Button>
+          </Box>
+        </div>
       </div>
-    </div>
+    )
   );
 };
 

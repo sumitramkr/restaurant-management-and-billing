@@ -3,60 +3,71 @@ import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import "./styles/Home.css";
+import Navbar from "./Navbar";
+import { toast } from "react-toastify";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = ({ authenticated }) => {
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth0();
 
-  // console.log(authenticated);
   return (
-    // authenticated === 1 &&
     <div>
-    <div className="dashHeading">
-    <h1>KALIKA DHABA</h1>
-    </div>
+      <div className="navbar">
+        <Navbar showText="DASHBOARD" />
+      </div>
+
       <div className="box-home">
         <Box sx={{ "& button": { m: 1 } }}>
           <div>
             <Button
-            className="home"
+              className="home"
               color="success"
               variant="contained"
               size="large"
               onClick={() => {
-                navigate("/invoice");
+                isAuthenticated
+                  ? navigate("/invoice")
+                  : toast.error("Please Login");
               }}
             >
               Invoice
             </Button>
             <Button
-            className="home"
+              className="home"
               color="success"
               variant="contained"
               size="large"
               onClick={() => {
-                navigate("/menu");
+                isAuthenticated
+                  ? navigate("/menu")
+                  : toast.error("Please Login");
               }}
             >
               Menu
             </Button>
             <Button
-            className="home"
+              className="home"
               color="success"
               variant="contained"
               size="large"
               onClick={() => {
-                navigate("/showStats");
+                isAuthenticated
+                  ? navigate("/showStats")
+                  : toast.error("Please Login");
               }}
             >
               Stats
             </Button>
             <Button
-            className="home"
+              className="home"
               color="success"
               variant="contained"
               size="large"
               onClick={() => {
-                navigate("/tax");
+                isAuthenticated
+                  ? navigate("/tax")
+                  : toast.error("Please Login");
               }}
             >
               Tax
