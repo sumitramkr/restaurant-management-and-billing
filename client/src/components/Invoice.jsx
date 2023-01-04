@@ -72,7 +72,7 @@ const Invoice = ({
   };
 
   const quantityChange = (e) => {
-    e.target.name === "quantity" && setQuantity(() => e.target.value);
+    e.target.name === "quantity" && setQuantity(() => parseInt(e.target.value));
     e.target.name === "discount" && setDiscount(() => e.target.value);
   };
 
@@ -163,7 +163,13 @@ const Invoice = ({
 
   const [timestamp, setTimestamp] = useState(new Date().getTime());
   const d = new Date();
-  const date = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+  console.log(d);
+  const date =
+    d.getFullYear() +
+    "-" +
+    ("0" + (d.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + d.getDate()).slice(-2);
 
   // const fixedChange = (e) => {
   //   e.target.name === "table_no" && setTableNo(() => e.target.value);
@@ -194,30 +200,30 @@ const Invoice = ({
         finalAmount = (
           parseFloat(discountedAmount) + parseFloat(taxAmount)
         ).toFixed(2);
-      }
 
-      setBillMetaData(() => [
-        {
-          bill_no: timestamp,
-          date: date,
-          payment_mode: paymentMode,
-          CGST: rates.CGST,
-          SGST: rates.SGST,
-          initial_amount: amounts,
-          discount: parseFloat(discount),
-          discount_amount: parseFloat(discountAmount),
-          discounted_amount: parseFloat(discountedAmount),
-          tax_amount: parseFloat(taxAmount),
-          final_amount: parseFloat(finalAmount),
-        },
-        ...billList,
-      ]);
-      toast.success("Generating Bill...");
-      setTimeout(() => {
-        setBillList(() => []);
-        navigate("/printInvoice");
-      }, 3000);
-      // console.log(billMetaData);
+        setBillMetaData(() => [
+          {
+            bill_no: timestamp,
+            date: date,
+            payment_mode: paymentMode,
+            CGST: rates.CGST,
+            SGST: rates.SGST,
+            initial_amount: amounts,
+            discount: parseFloat(discount),
+            discount_amount: parseFloat(discountAmount),
+            discounted_amount: parseFloat(discountedAmount),
+            tax_amount: parseFloat(taxAmount),
+            final_amount: parseFloat(finalAmount),
+          },
+          ...billList,
+        ]);
+        toast.success("Generating Bill...");
+        setTimeout(() => {
+          setBillList(() => []);
+          navigate("/printInvoice");
+        }, 3000);
+        // console.log(billMetaData);
+      }
     }
   };
 
