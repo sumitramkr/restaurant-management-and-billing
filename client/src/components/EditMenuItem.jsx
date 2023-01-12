@@ -26,7 +26,7 @@ const EditMenuItem = ({ autheticated }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/editMenuItem/${food_id}`)
+      .get(`https://kalika-dhaba-backend.onrender.com/${food_id}`)
       .then((response) => setFood(response.data[0]));
   }, [food_id]);
 
@@ -50,7 +50,7 @@ const EditMenuItem = ({ autheticated }) => {
     } else {
       toast.success("Successfully Updated!");
       axios
-        .put(`http://localhost:5000/editMenuItem/${food_id}`, { ...food })
+        .put(`https://kalika-dhaba-backend.onrender.com/${food_id}`, { ...food })
         .then((response) => {
           console.log(response);
         })

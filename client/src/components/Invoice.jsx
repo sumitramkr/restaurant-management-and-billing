@@ -55,7 +55,7 @@ const Invoice = ({
   });
 
   const loadMenu = async () => {
-    const response = await axios.get("http://localhost:5000/menu");
+    const response = await axios.get("https://kalika-dhaba-backend.onrender.com/menu");
     setFoodData(response.data);
   };
 
@@ -149,7 +149,7 @@ const Invoice = ({
   }, [billList]);
 
   const getRates = async () => {
-    const response = await axios.get("http://localhost:5000/getRates");
+    const response = await axios.get("https://kalika-dhaba-backend.onrender.com/getRates");
     setRates((rates) => ({
       ...rates,
       CGST: response.data.CGST,

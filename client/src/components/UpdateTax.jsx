@@ -14,7 +14,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
   const { isAuthenticated } = useAuth0();
 
   const getRates = async () => {
-    const response = await axios.get("http://localhost:5000/getRates");
+    const response = await axios.get("https://kalika-dhaba-backend.onrender.com/getRates");
     setRates((rates) => ({
       ...rates,
       CGST: response.data.CGST,
@@ -40,7 +40,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
       toast.error("Enter All Fields!");
     } else {
       axios
-        .post("http://localhost:5000/getNewRates", { ...rates })
+        .post("https://kalika-dhaba-backend.onrender.com/getNewRates", { ...rates })
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
 

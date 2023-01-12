@@ -14,7 +14,7 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/billData", billMetaData)
+      .post("https://kalika-dhaba-backend.onrender.com/billData", billMetaData)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
     window.print();

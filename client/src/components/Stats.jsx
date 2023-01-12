@@ -56,7 +56,7 @@ const Stats = ({ authenticated }) => {
   const loadFoodSales = async (e) => {
     // e.preventDefault();
     const response = await axios.get(
-      `http://localhost:5000/showStats/${rdate1}/${rdate2}`
+      `https://kalika-dhaba-backend.onrender.com/showStats/${rdate1}/${rdate2}`
     );
     setSales(response.data);
   };
