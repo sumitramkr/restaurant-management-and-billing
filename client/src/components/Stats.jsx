@@ -56,9 +56,10 @@ const Stats = ({ authenticated }) => {
   const loadFoodSales = async (e) => {
     // e.preventDefault();
     const response = await axios.get(
-      `https://kalika-dhaba-backend.onrender.com/showStats/${rdate1}/${rdate2}`
+      `https://kalikaapi.up.railway.app/showStats/${rdate1}/${rdate2}`
     );
     setSales(response.data);
+    console.log(response.data);
   };
 
   const handleDate1 = (beginDate1) => {

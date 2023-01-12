@@ -20,7 +20,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
   const { isAuthenticated } = useAuth0();
 
   const loadMenu = async () => {
-    const response = await axios.get("https://kalika-dhaba-backend.onrender.com/menu");
+    const response = await axios.get("https://kalikaapi.up.railway.app/menu");
     setFoodData(response.data);
   };
 
@@ -30,7 +30,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
 
   const deleteItem = (food_id, food_name) => {
     if (window.confirm("Are you sure? " + food_name + " will be deleted!")) {
-      axios.delete(`https://kalika-dhaba-backend.onrender.com/deleteItem/${food_id}`);
+      axios.delete(`https://kalikaapi.up.railway.app/deleteItem/${food_id}`);
       toast.success(food_name + " Deleted Successfully!");
       setTimeout(() => loadMenu(), 2000);
     }

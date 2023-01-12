@@ -7,10 +7,11 @@ const cors = require("cors");
 const md5 = require("md5");
 
 const db = mysql.createPool({
-  host: "containers-us-west-182.railway.app",
+  host: "localhost",
   user: "root",
+  port: 3306,
   password: process.env.DB_PASSWORD,
-  database: "railway",
+  database: "billing",
 });
 
 app.use(cors());

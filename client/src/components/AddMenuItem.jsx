@@ -52,7 +52,7 @@ const AddMenuItem = ({ foodData }) => {
       if (matched === 0) {
         toast.success("Successfully Added!");
         axios
-          .post("https://kalika-dhaba-backend.onrender.com/addMenuItem", {
+          .post("https://kalikaapi.up.railway.app/addMenuItem", {
             ...food,
           })
           .then((response) => {
