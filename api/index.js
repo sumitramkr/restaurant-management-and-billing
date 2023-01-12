@@ -7,10 +7,10 @@ const cors = require("cors");
 const md5 = require("md5");
 
 const db = mysql.createPool({
-  host: "localhost",
+  host: "containers-us-west-182.railway.app",
   user: "root",
   password: process.env.DB_PASSWORD,
-  database: "billing",
+  database: "railway",
 });
 
 app.use(cors());
@@ -159,6 +159,6 @@ app.put("/editMenuItem/:food_id", (req, res) => {
   );
 });
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
   console.log("listening at port 5000");
 });
