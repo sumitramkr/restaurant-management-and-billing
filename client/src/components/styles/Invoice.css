@@ -8,9 +8,7 @@
   border-top: none;
   border-bottom: none;
   border-left-color: #7fbcd2;
-  /* border-right-color: #7fbcd2; */
   border-left-style: dashed;
-  /* border-right-style: dashed; */
 }
 
 .flex-child:first-child {
@@ -32,21 +30,21 @@
   margin: 0.6rem 0;
 }
 
-.css-ke5b6m-MuiButtonBase-root-MuiButton-root.add {
+.add {
   margin-right: 1rem !important;
   min-width: 3rem !important;
   line-height: 2rem !important;
   font-size: 1rem !important;
 }
 
-.css-1sszw6i-MuiButtonBase-root-MuiButton-root.del {
+.del {
   margin-left: 1rem !important;
   min-width: 3rem !important;
   line-height: 2rem !important;
   font-size: 1rem !important;
 }
 
-.css-1rwt2y5-MuiButtonBase-root-MuiButton-root.fin {
+.fin {
     min-width: 3rem !important;
     width: 23rem;
     line-height: 2rem !important;
@@ -66,16 +64,20 @@
   font-size: 1rem !important;
 }
 
-.css-34nofg-MuiTableRow-root {
+.invoice-ppr {
   background-color: #faf8f1 !important;
 }
 
-.css-dwuj3p-MuiTableCell-root.deleteCell{
+.first-col-invoice {
+  text-align: center!important;
+}
+
+.deleteCell{
 margin: 0rem!important;
 padding: 0rem!important;
 }
 
-.css-1yhpg23-MuiTableCell-root.deleteColumn{
+.deleteColumn{
 margin: 0rem!important;
 padding: 0rem!important;
 }

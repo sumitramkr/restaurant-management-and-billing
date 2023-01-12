@@ -71,31 +71,35 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
             noValidate
             autoComplete="off"
           >
-            <TextField
-              className="tax"
-              error={rates.CGST < 0}
-              helperText={rates.CGST < 0 && "(-) Negative Input"}
-              id="outlined-required"
-              label="CGST"
-              type="number"
-              name="CGST"
-              onChange={handleChange}
-              value={rates.CGST || ""}
-            />
-            <TextField
-              className="tax"
-              error={rates.SGST < 0}
-              helperText={rates.CGST < 0 && "(-) Negative Input"}
-              id="outlined-required"
-              label="SGST"
-              type="number"
-              name="SGST"
-              onChange={handleChange}
-              value={rates.SGST || ""}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+            <div className="tax-text">
+              <TextField
+                className="tax"
+                error={rates.CGST < 0}
+                helperText={rates.CGST < 0 && "(-) Negative Input"}
+                id="outlined-required"
+                label="CGST"
+                type="number"
+                name="CGST"
+                onChange={handleChange}
+                value={rates.CGST || ""}
+              />
+            </div>
+            <div className="tax-text">
+              <TextField
+                className="tax"
+                error={rates.SGST < 0}
+                helperText={rates.CGST < 0 && "(-) Negative Input"}
+                id="outlined-required"
+                label="SGST"
+                type="number"
+                name="SGST"
+                onChange={handleChange}
+                value={rates.SGST || ""}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </div>
             <br></br>
             <Button
               className="tax-btn"
@@ -110,7 +114,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         </div>
         <div>
         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-        <BottomNavigation />
+        <BottomNavigation sx={{ backgroundColor: 'primary.main' }} />
         </Paper>
         </div>
       </div>

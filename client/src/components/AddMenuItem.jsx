@@ -9,7 +9,7 @@ import "./styles/AddEditMenuItem.css";
 import Navbar from "./Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import Paper from "@mui/material/Paper";
-import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigation from "@mui/material/BottomNavigation";
 
 const AddMenuItem = ({ foodData }) => {
   const navigate = useNavigate();
@@ -52,7 +52,9 @@ const AddMenuItem = ({ foodData }) => {
       if (matched === 0) {
         toast.success("Successfully Added!");
         axios
-          .post("https://kalika-dhaba-backend.onrender.com/addMenuItem", { ...food })
+          .post("https://kalika-dhaba-backend.onrender.com/addMenuItem", {
+            ...food,
+          })
           .then((response) => {
             console.log(response);
           })
@@ -134,7 +136,7 @@ const AddMenuItem = ({ foodData }) => {
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
             elevation={3}
           >
-            <BottomNavigation />
+            <BottomNavigation sx={{ backgroundColor: 'primary.main' }} />
           </Paper>
         </div>
       </div>

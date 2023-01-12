@@ -115,36 +115,42 @@ const Stats = ({ authenticated }) => {
         <div className="navbar">
           <Navbar showText="STATS" />
         </div>
-        <div className="first-row">
-          <div className="child">
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DesktopDatePicker
-                label="Begin"
+        <div className="outer">
+          <div className="inner">
+            <div className="child">
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DesktopDatePicker
+                  label="Begin"
+                  color="success"
+                  inputFormat="YYYY-MM-DD"
+                  value={date1 ?? ""}
+                  onChange={handleDate1}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </div>
+            <div className="child">
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DesktopDatePicker
+                  label="End"
+                  inputFormat="YYYY-MM-DD"
+                  value={date2 ?? ""}
+                  onChange={handleDate2}
+                  renderInput={(params) => <TextField {...params} />}
+                />
+              </LocalizationProvider>
+            </div>
+            <div className="child">
+              <Button
+                className="stats-btn"
                 color="success"
-                inputFormat="YYYY-MM-DD"
-                value={date1 ?? ""}
-                onChange={handleDate1}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DesktopDatePicker
-                label="End"
-                inputFormat="YYYY-MM-DD"
-                value={date2 ?? ""}
-                onChange={handleDate2}
-                renderInput={(params) => <TextField {...params} />}
-              />
-            </LocalizationProvider>
-            <Button
-              className="stats-btn"
-              color="success"
-              variant="contained"
-              size="large"
-              onClick={loadFoodSales}
-            >
-              SHOW
-            </Button>
+                variant="contained"
+                size="large"
+                onClick={loadFoodSales}
+              >
+                SHOW
+              </Button>
+            </div>
           </div>
         </div>
 
@@ -219,10 +225,14 @@ const Stats = ({ authenticated }) => {
                   <strong>Subtotal: ₹ {sales[0].subtotal.toFixed(2)}</strong>
                   <br></br>
                   <br></br>
-                  <strong>Discounts: ₹ {sales[0].discount_amount.toFixed(2)}</strong>
+                  <strong>
+                    Discounts: ₹ {sales[0].discount_amount.toFixed(2)}
+                  </strong>
                   <br></br>
                   <br></br>
-                  <strong>Total Taxes: ₹ {sales[0].tax_amount.toFixed(2)}</strong>
+                  <strong>
+                    Total Taxes: ₹ {sales[0].tax_amount.toFixed(2)}
+                  </strong>
                   <br></br>
                   <br></br>
                   <strong>
@@ -243,7 +253,7 @@ const Stats = ({ authenticated }) => {
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
             elevation={3}
           >
-            <BottomNavigation />
+            <BottomNavigation sx={{ backgroundColor: 'primary.main' }} />
           </Paper>
         </div>
       </div>

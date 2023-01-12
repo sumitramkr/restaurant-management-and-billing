@@ -424,7 +424,7 @@ const Invoice = ({
             <div></div>
             <div>
               <Paper sx={{ width: "100%", overflow: "hidden" }}>
-                <TableContainer sx={{ maxHeight: 440 }}>
+                <TableContainer sx={{ maxHeight: 440 }} className="invoice-ppr">
                   <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                       <TableRow>
@@ -457,7 +457,7 @@ const Invoice = ({
                             "&:last-child td, &:last-child th": { border: 0 },
                           }}
                         >
-                          <TableCell component="th" scope="row">
+                          <TableCell component="th" scope="row" className="first-col-invoice">
                             {i + 1}
                           </TableCell>
                           <TableCell align="center">
@@ -494,7 +494,7 @@ const Invoice = ({
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
             elevation={3}
           >
-            <BottomNavigation />
+            <BottomNavigation sx={{ backgroundColor: 'primary.main' }} />
           </Paper>
         </div>
       </div>

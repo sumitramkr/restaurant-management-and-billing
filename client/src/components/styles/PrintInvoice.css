@@ -3,7 +3,6 @@
     width: 50%;
   }
   
-  /* Clear floats after the columns */
   .row-print:after {
     content: "";
     display: table;
@@ -36,15 +35,6 @@
     border-right-style: none;
     border-collapse: collapse;
   }
-
-/* td,
-th,
-tr,
-table { */
-    /* border-top: dotted black;
-    border-bottom: dotted black; */
-    /* border-collapse: collapse;
-} */
 
 td.description,
 th.description {

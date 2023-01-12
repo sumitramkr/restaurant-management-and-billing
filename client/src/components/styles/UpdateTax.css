@@ -4,13 +4,19 @@
     margin-top: 3rem;
 }
 
-.css-mkazzp-MuiButtonBase-root-MuiButton-root.tax-btn {
-    margin-top: 2rem;
+.tax-btn {
+    margin-top: 2rem !important;
     min-width: 3rem !important;
     line-height: 3rem !important;
     font-size: 1.3rem !important;
 }
 
-.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.tax {
+.tax {
     border-width: 1rem!important;
+    margin: 1rem !important;
+}
+
+.tax-text {
+    margin: 1rem;
+    display: inline-block;
 }

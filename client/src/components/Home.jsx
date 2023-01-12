@@ -8,8 +8,18 @@ import { toast } from "react-toastify";
 import Paper from "@mui/material/Paper";
 import { useAuth0 } from "@auth0/auth0-react";
 import BottomNavigation from "@mui/material/BottomNavigation";
+// import { makeStyles } from "@mui/material";
+
+// const useStyles = makeStyles({
+//   btn: {
+//     minWidth: "12.5rem !important",
+//     lineHeight: "7rem !important",
+//     fontSize: "2rem !important",
+//   }
+// });
 
 const Home = ({ authenticated }) => {
+  // const classes = useStyles();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth0();
 
@@ -82,7 +92,7 @@ const Home = ({ authenticated }) => {
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
           elevation={3}
         >
-          <BottomNavigation />
+          <BottomNavigation sx={{ backgroundColor: 'primary.main' }}/>
         </Paper>
       </div>
     </div>

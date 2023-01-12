@@ -132,7 +132,7 @@ const EditMenuItem = ({ autheticated }) => {
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
             elevation={3}
           >
-            <BottomNavigation />
+            <BottomNavigation sx={{ backgroundColor: 'primary.main' }} />
           </Paper>
         </div>
       </div>

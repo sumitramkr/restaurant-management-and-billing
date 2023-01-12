@@ -1,18 +1,16 @@
-.css-mkazzp-MuiButtonBase-root-MuiButton-root.menuAdd {
+.menuAdd {
     min-width: 3rem !important;
     line-height: 2.5rem !important;
     font-size: 1.5rem !important;
-}
-
-.css-mkazzp-MuiButtonBase-root-MuiButton-root.menuAdd {
     margin: 0.5rem !important;
 }
 
-.css-1ph36rw-MuiButtonBase-root-MuiButton-root.tableBtn-edit {
+
+.tableBtn-edit {
     margin-right: 2rem!important;
 }
 
-.css-1ph36rw-MuiButtonBase-root-MuiButton-root.tableBtn-del {
+.tableBtn-del {
     margin-left: 2rem!important;
 }
 
@@ -22,11 +20,11 @@
     font-size: 1rem!important;
 }
 
-.css-1r3wb1f-MuiPaper-root {
+.paper-cont {
     background-color: #FAF8F1 !important;
 }
 
-.css-1ex1afd-MuiTableCell-root {
+.first-col {
     text-align: center!important;
 }
 
@@ -37,6 +35,6 @@
     margin-bottom: 0rem;
 }
 
-.css-sghohy-MuiButtonBase-root-MuiButton-root.menu {
+.menu {
     justify-content: left!important;
 }

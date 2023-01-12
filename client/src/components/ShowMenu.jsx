@@ -51,7 +51,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
               margin: "auto",
             }}
           >
-            <TableContainer sx={{ maxHeight: "40rem" }}>
+            <TableContainer sx={{ maxHeight: "40rem" }} className="paper-cont">
               <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                   <TableRow>
@@ -79,7 +79,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
                       key={foodData.food_id}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                     >
-                      <TableCell component="th" scope="row" className="1stth">
+                      <TableCell component="th" scope="row" className="first-col">
                         {foodData.food_id}
                       </TableCell>
                       <TableCell align="center">{foodData.food_name}</TableCell>
@@ -138,7 +138,7 @@ const ShowMenu = ({ autheticated, foodData, setFoodData }) => {
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
             elevation={3}
           >
-            <BottomNavigation />
+            <BottomNavigation sx={{ backgroundColor: 'primary.main' }} />
           </Paper>
         </div>
       </div>
