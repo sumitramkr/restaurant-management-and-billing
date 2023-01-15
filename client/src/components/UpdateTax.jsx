@@ -41,6 +41,7 @@ const UpdateTax = ({ rates, setRates }) => {
     if (!rates.CGST || !rates.SGST) {
       toast.error("Enter All Fields!");
     } else {
+      toast.success("Taxes Updated!");
       axios
         .post("https://kalikaapi.up.railway.app/getNewRates", { ...rates })
         .then((response) => console.log(response))

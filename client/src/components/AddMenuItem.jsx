@@ -43,7 +43,7 @@ const AddMenuItem = ({ foodData }) => {
       let matched = 0;
 
       for (let i = 0; i < foodData.length; i++) {
-        if (foodData[i].food_name === food.food_name) {
+        if (foodData[i].food_name.toLowerCase() === food.food_name.toLowerCase()) {
           matched = 1;
           break;
         }

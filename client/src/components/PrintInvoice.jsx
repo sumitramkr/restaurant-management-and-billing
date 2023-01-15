@@ -189,7 +189,7 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
                   </div>
                 </div>
               )}
-              <div className="row-print">
+              {!!(billMetaData[0].CGST + billMetaData[0].SGST) && (<div className="row-print">
                 <div className="column-print">
                   <p
                     style={{ fontSize: "7.6px", marginLeft: "2px" }}
@@ -212,7 +212,7 @@ const PrintInvoice = ({ authenticated, billMetaData, setBillMetaData }) => {
                     ₹ {(billMetaData[0].tax_amount / 2).toFixed(2)}
                   </p>
                 </div>
-              </div>
+              </div>)}
               <hr></hr>
               <div className="row-print">
                 <div className="column-print">
