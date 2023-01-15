@@ -7,14 +7,16 @@ import Button from "@mui/material/Button";
 import "./styles/UpdateTax.css";
 import Navbar from "./Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
-import BottomNavigation from '@mui/material/BottomNavigation';
-import Paper from '@mui/material/Paper';
+import BottomNavigation from "@mui/material/BottomNavigation";
+import Paper from "@mui/material/Paper";
 
-const UpdateTax = ({ authenticated, rates, setRates }) => {
+const UpdateTax = ({ rates, setRates }) => {
   const { isAuthenticated } = useAuth0();
 
   const getRates = async () => {
-    const response = await axios.get("https://kalikaapi.up.railway.app/getRates");
+    const response = await axios.get(
+      "https://kalikaapi.up.railway.app/getRates"
+    );
     setRates((rates) => ({
       ...rates,
       CGST: response.data.CGST,
@@ -30,7 +32,7 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
     const { name, value } = e.target;
     setRates((rates) => ({
       ...rates,
-      [name]: parseFloat(value),
+      [name]: value,
     }));
   };
 
@@ -43,12 +45,6 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
         .post("https://kalikaapi.up.railway.app/getNewRates", { ...rates })
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
-
-      if (typeof rates.CGST === "number" && typeof rates.SGST === "number") {
-        toast.success("Taxes Updated!");
-      } else {
-        toast.error("Error!");
-      }
     }
   };
 
@@ -113,9 +109,12 @@ const UpdateTax = ({ authenticated, rates, setRates }) => {
           </Box>
         </div>
         <div>
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-        <BottomNavigation sx={{ backgroundColor: 'primary.main' }} />
-        </Paper>
+          <Paper
+            sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+            elevation={3}
+          >
+            <BottomNavigation sx={{ backgroundColor: "primary.main" }} />
+          </Paper>
         </div>
       </div>
     )

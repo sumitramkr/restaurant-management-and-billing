@@ -19,7 +19,8 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  const sqlRemove = "DELETE FROM stats WHERE date < DATEADD(MONTH, -6, GETDATE())";
+  const sqlRemove =
+    "DELETE FROM stats WHERE date < DATEADD(MONTH, -6, GETDATE())";
   db.query(sqlRemove, (error, result) => {
     error && console.log(error);
     res.send(result);
@@ -73,17 +74,20 @@ app.get("/editMenuItem/:food_id", (req, res) => {
 
 app.post("/getNewRates", (req, res) => {
   const { CGST, SGST } = req.body;
-  if (typeof CGST === "number" && typeof SGST === "number") {
-    const sqlTruncate = "TRUNCATE TABLE tax";
-    db.query(sqlTruncate, (error, result) => {
-      error && console.log(error);
-    });
 
-    const sqlInsert = "INSERT INTO tax (CGST, SGST) VALUES (?, ?)";
-    db.query(sqlInsert, [CGST, SGST], (error, result) => {
+  const sqlTruncate = "TRUNCATE TABLE tax";
+  db.query(sqlTruncate, (error, result) => {
+    error && console.log(error);
+  });
+
+  const sqlInsert = "INSERT INTO tax (CGST, SGST) VALUES (?, ?)";
+  db.query(
+    sqlInsert,
+    [parseFloat(CGST).toFixed(2), parseFloat(SGST).toFixed(2)],
+    (error, result) => {
       error && console.log(error);
-    });
-  }
+    }
+  );
 });
 
 app.post("/addMenuItem", (req, res) => {
