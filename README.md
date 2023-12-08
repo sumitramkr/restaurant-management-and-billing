@@ -16,9 +16,7 @@ This project aims to streamline restaurant management tasks and simplify billing
 
 - **Sales and Tax Statistics:** Sumaitri Shikha's work enables users to view comprehensive sales and tax statistics over the past 6 months, facilitating data-driven decision-making.
 
-- Automated total calculations, taxes, and discounts in the billing process. Streamlined and efficient billing system for a seamless customer experience. Thermal Printing
-
-- Integration of 2-inches thermal printing for generating receipts. Enhance customer service with quick and professional-looking receipts.
+- **Automated Billing Process:** Streamlined and efficient billing system for a seamless customer experience. Thermal Printing integration of 2-inches thermal printing for generating receipts. Enhance customer service with quick and professional-looking receipts.
 
 ## Contributors
 
