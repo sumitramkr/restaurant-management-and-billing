@@ -1,6 +1,6 @@
 # Restaurant Management and Billing
 
-Welcome to the "Restaurant Management and Billing" project repository, a collaborative effort by Sumitram Kumar and Sumaitri Shikha.
+Welcome to the "Restaurant Management and Billing" project repository, a collaborative effort by **Sumitram Kumar** and **Sumaitri Shikha**.
 
 ## Project Overview
 
@@ -73,6 +73,6 @@ With these prerequisites in place, you'll be ready to write, compile, and run No
 
 ## License
 
-This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 Feel free to reach out if you have any questions or feedback! Happy coding!
